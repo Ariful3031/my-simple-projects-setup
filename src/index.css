@@ -1,2 +1,33 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+@theme {
+    /* Custom Primary, Secondary, and Other Colors */
+    --color-primary: #4f46e5;
+    --color-secondary: #7c3aed;
+    --color-accent: #f59e0b;
+    --color-success: #22c55e;
+    --color-btn-primary: "";
+
+    /* Apni chaile shades o set korte paren */
+    --color-primary-dark: #3730a3;
+    --color-primary-light: #a5b4fc;
+
+    --color-btn-primary: #2563eb;
+    /* Blue */
+    --color-btn-primary-hover: #1d4ed8;
+
+    --color-btn-danger: #dc2626;
+    /* Red */
+    --color-btn-success: #16a34a;
+    /* Green */
+
+    /* Text color variables */
+    --color-btn-text: #ffffff;
+}
+.btn-gradient {
+    @apply bg-gradient-to-r from-[#3357FF] to-[#00C9A7] shadow-xl text-white px-5 py-2 rounded-xl font-semibold border-none hover:scale-105;
+}
+.bg-gradient {
+    @apply bg-gradient-to-r from-[#00C9A7] to-[#22C55E];
+}

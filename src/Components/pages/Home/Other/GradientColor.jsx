@@ -3,6 +3,46 @@ import React from 'react'
 const GradientColor = () => {
   return (
     <div className='grid grid-cols-4 gap-5'>
+      <p className="w-full h-10 text-center bg-gradient-to-r from-[#6D28D9] to-[#A855F7]">
+        text-1, #6D28D9, #A855F7
+      </p>
+
+      <p className="w-full h-10 text-center bg-gradient-to-r from-[#7C3AED] to-[#9333EA]">
+        text-2, #7C3AED, #9333EA
+      </p>
+
+      <p className="w-full h-10 text-center bg-gradient-to-r from-[#8B5CF6] to-[#C084FC]">
+        text-3, #8B5CF6, #C084FC
+      </p>
+
+      <p className="w-full h-10 text-center bg-gradient-to-r from-[#9333EA] to-[#A855F7]">
+        text-4, #9333EA, #A855F7
+      </p>
+
+      <p className="w-full h-10 text-center bg-gradient-to-r from-[#7E22CE] to-[#9333EA]">
+        text-5, #7E22CE, #9333EA
+      </p>
+
+      <p className="w-full h-10 text-center bg-gradient-to-r from-[#6D28D9] to-[#7C3AED]">
+        text-6, #6D28D9, #7C3AED
+      </p>
+
+      <p className="w-full h-10 text-center bg-gradient-to-r from-[#A855F7] to-[#C084FC]">
+        text-7, #A855F7, #C084FC
+      </p>
+
+      <p className="w-full h-10 text-center bg-gradient-to-r from-[#8B5CF6] to-[#A78BFA]">
+        text-8, #8B5CF6, #A78BFA
+      </p>
+
+      <p className="w-full h-10 text-center bg-gradient-to-r from-[#9333EA] to-[#C084FC]">
+        text-9, #9333EA, #C084FC
+      </p>
+
+      <p className="w-full h-10 text-center bg-gradient-to-r from-[#7C3AED] to-[#A855F7]">
+        text-10, #7C3AED, #A855F7
+      </p>
+
       <p className='w-full h-10 text-center bg-gradient-to-r from-[#3357FF] to-[#FF33A8]'>text-1, #3357F, #FF33A8 </p>
       <p className='w-full h-10 text-center bg-gradient-to-r from-[#FF6633] to-[#6633FF]'>text-2, #FF6633, #6633FF </p>
       <p className="w-full h-10 text-center bg-gradient-to-r from-[#3357FF] to-[#FF33A8]"> 1, #3357FF, #FF33A8</p>
