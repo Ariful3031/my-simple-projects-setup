@@ -3,34 +3,59 @@ import { FaEye } from 'react-icons/fa';
 import { IoMdEyeOff } from 'react-icons/io';
 import { Link } from 'react-router';
 import { AuthContext } from '../../../context/AuthContext/AuthContext';
+import { useForm } from 'react-hook-form';
 
 const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const { register, handleSubmit, watch, formState: { errors }, } = useForm()
 
-    const data = useContext(AuthContext);
-    console.log(data)
-    
+    const { createUser } = useContext(AuthContext);
+    console.log(createUser)
+    const handleCreateUser = (data) => {
+        const email= data.email;
+        const password= data.password;
+        createUser(email,password)
+        .then((result)=>{
+            console.log(result)
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
+    }
+
     return (
         <div className='bg-[#FFF0E1] w-full mx-auto h-screen my-auto flex justify-center items-center'>
             <div className=" card bg-gradient w-full mx-auto max-w-md shrink-0 shadow-2xl">
                 <h1 className='text-2xl text-[#15803D] dark:text-white font-semibold text-center mt-5'>Register Now</h1>
                 <div className="card-body">
-                    <form>
+                    <form onSubmit={handleSubmit(handleCreateUser)}>
                         {/* Name */}
                         <label className="label text-black dark:text-white font-semibold">Name</label>
-                        <input type="text" name='name' className="input w-full outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " placeholder="Name" />
+                        <input type="text"
+                            {...register("name", { required: true })}
+                            name='name' className="input w-full outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " placeholder="Name" />
+                        {errors.name && <p className='text-red-700'>Name is required</p>}
                         {/* image url */}
 
                         <label className="label text-black dark:text-white font-semibold">URL</label>
-                        <input type="url" name='image' className="input w-full outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " placeholder="Image Url" />
+                        <input type="url"
+                            {...register("image", { required: true })}
+                            name='image' className="input w-full outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " placeholder="Image Url" />
+                        {errors.image && <p className='text-red-700'>image is required</p>}
                         {/* Email */}
                         <label className="label text-black dark:text-white font-semibold">Email</label>
-                        <input type="email" name='email' className="input w-full outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " placeholder="Email" />
+                        <input type="email"
+                            {...register("email", { required: true })}
+                            name='email' className="input w-full outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " placeholder="Email" />
+                        {errors.email && <p className='text-red-700'>Email is required</p>}
 
                         {/* password */}
                         <label className="label text-black dark:text-white font-semibold">Password</label>
                         <div className='relative'>
-                            <input type={showPassword ? "text" : "password"} name='password' className="input w-full outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " placeholder="password" />
+                            <input type={showPassword ? "text" : "password"}
+                                {...register("password", { required: true })}
+                                name='password' className="input w-full outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " placeholder="password" />
+                            {errors.password && <p className='text-red-700'>Password is required</p>}
                             <button type='button' onClick={() => setShowPassword(!showPassword)} className="text-xl absolute right-2 top-2 z-50">{
                                 showPassword ? <IoMdEyeOff /> : <FaEye />}</button>
                         </div>
