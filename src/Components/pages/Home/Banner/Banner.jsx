@@ -1,9 +1,10 @@
 import React from 'react'
+import BannerImage from '../../../../assets/e-learning-banner-design.avif'
 
 const Banner = () => {
   return (
     <div>
-        <h1>This is our Banner section</h1>
+        <img className='w-full object-cover lg:h-[500px]' src={BannerImage} alt="" />
     </div>
   )
 }

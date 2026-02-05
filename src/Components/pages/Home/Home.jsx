@@ -11,10 +11,10 @@ const Home = () => {
 
             {/* <p>3 color Gradient</p>
             <ThreeColorGradient></ThreeColorGradient> */}
-            <p>2 color Gradient</p>
-            <GradientColor></GradientColor>
-            <p> color </p>
-            <Color></Color>
+            {/* <p>2 color Gradient</p>
+            <GradientColor></GradientColor> */}
+            {/* <p> color </p>
+            <Color></Color> */}
 
 
         </div>
