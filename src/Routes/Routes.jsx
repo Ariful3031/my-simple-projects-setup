@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router";
-import MainLayout from "../Layouts/MainLayout";
+import MainLayout from "../layouts/MainLayout";
 import Home from "../components/pages/Home/Home";
 import Login from "../components/pages/login/Login";
 import Register from "../components/pages/Register/Register";
@@ -8,6 +8,7 @@ import AboutUs from "../components/pages/About/AboutUs";
 import ContactUs from "../components/pages/Contact/ContactUs";
 import Instructors from "../components/pages/Instructors/Instructors";
 import Blog from "../components/pages/Blog/Blog";
+
 
 
 export const router = createBrowserRouter([
