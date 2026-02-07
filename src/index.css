@@ -9,12 +9,11 @@
 .bg-gradient {
     @apply bg-gradient-to-r from-[#00C9A7] to-[#22C55E];
 }
-.menu li a{
-    @apply bg-primary-100 text-red-400 
+
+.menu li a {
+    @apply bg-primary-100 text-red-400
 }
-/* .nav li a.active{
-    @apply bg-primary-100 text-green-600 
-} */
-/* .navlink.active{
-     @apply bg-red-500 text-green-600 
-} */
+
+.heading_title {
+    @apply text-center text-primary-400 md:text-5xl font-extrabold my-5
+}
