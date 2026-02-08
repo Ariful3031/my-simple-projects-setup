@@ -3,11 +3,13 @@ import MainLayout from "../layouts/MainLayout";
 import Home from "../components/pages/Home/Home";
 import Login from "../components/pages/login/Login";
 import Register from "../components/pages/Register/Register";
-import Courses from "../components/pages/Courses/Courses";
-import AboutUs from "../components/pages/About/AboutUs";
-import ContactUs from "../components/pages/Contact/ContactUs";
-import Instructors from "../components/pages/Instructors/Instructors";
-import Blog from "../components/pages/Blog/Blog";
+import BlogPage from "../components/pages/BlogPage/BlogPage";
+import InstructorsPage from "../components/pages/InstructorsPage/InstructorsPage";
+import ContactUsPage from "../components/pages/ContactPage/ContactUsPage";
+import AboutUsPage from "../components/pages/AboutUsPage/AboutUsPage";
+import CoursesPage from "../components/pages/CoursesPage/CoursesPage";
+import AdminDashboard from "../components/Dashboard/AdminDashboard/AdminDashboard";
+
 
 
 
@@ -30,24 +32,34 @@ export const router = createBrowserRouter([
       },
       {
         path: "/courses",
-        element: <Courses></Courses>
+        element: <CoursesPage></CoursesPage>
       },
       {
         path: "/about_us",
-        element: <AboutUs></AboutUs>
+        element: <AboutUsPage></AboutUsPage>
       },
       {
         path: "/contact-us",
-        element: <ContactUs></ContactUs>
+        element: <ContactUsPage></ContactUsPage>
       },
       {
         path: "/instructors",
-        element: <Instructors></Instructors>
+        element: <InstructorsPage></InstructorsPage>
       },
       {
         path: "/blog",
-        element: <Blog></Blog>
+        element: <BlogPage></BlogPage>
       },
     ]
   },
+  {
+    path: "dashboard",
+    element: <AdminDashboard></AdminDashboard>,
+    children: [
+      // {
+      //   index: true,
+      //   element:
+      // },
+    ]
+  }
 ]);

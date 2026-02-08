@@ -1,12 +1,29 @@
 import React from 'react'
 import Banner from './Banner/Banner'
 import { CommunitySection } from './CommunitySection/CommunitySection'
+import { TopCourses } from './TopCourses/TopCourses'
+import { TrendingCategories } from './TrendingCategories/TrendingCategories'
+import { AllCourses } from './AllCourses/AllCourses'
+import { Instructors } from './Instructors/Instructors'
+import { LatestFeature } from './LatestFeature/LatestFeature'
+import { FeedBacks } from './FeedBacks/FeedBacks'
+import { Podcasts } from './Podcasts/Podcasts'
+import { PlacedAt } from './PlacedAt/PlacedAt'
 
 const Home = () => {
     return (
-        <div className='min-h-[75vh]'>
+        <div className=''>
             <Banner></Banner>
             <CommunitySection></CommunitySection>
+            <TopCourses></TopCourses>
+            <AllCourses></AllCourses>
+            <Instructors></Instructors>
+            <TrendingCategories></TrendingCategories>
+            <LatestFeature></LatestFeature>
+            <FeedBacks></FeedBacks>
+            <Podcasts></Podcasts>
+            <PlacedAt></PlacedAt>
+
             {/* <h1 className='bg-primary-50'>Hello i am Ariful islam</h1>
             <h1 className='bg-primary-100'>Hello i am Ariful islam</h1>
             <h1 className='bg-primary-200'>Hello i am Ariful islam</h1>

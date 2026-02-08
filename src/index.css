@@ -14,6 +14,9 @@
     @apply bg-primary-100 text-red-400
 }
 
-.heading_title {
+.section_title {
     @apply text-center text-primary-400 md:text-5xl font-extrabold my-5
+}
+.section_subtitle {
+    @apply text-center text-[#4B5563] dark:text-[#D1D5DB]  text-xl my-3
 }

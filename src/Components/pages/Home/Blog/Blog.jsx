@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const CommunitySection = () => {
+export const Blog = () => {
     return (
         <div className='px-2'>
             <h1 className='section_title'>Our Growing Community</h1>

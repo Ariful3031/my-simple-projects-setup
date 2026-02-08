@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from '../../../assets/screencapture-online-learning-platfom-netlify-app-2026-02-03-11_59_59.png'
 
-const Courses = () => {
+const CoursesPage = () => {
   return (
     <div>
       <h1>This is our Courses page</h1>
@@ -17,4 +17,4 @@ const Courses = () => {
   )
 }
 
-export default Courses
+export default CoursesPage
