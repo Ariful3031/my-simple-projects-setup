@@ -4,23 +4,19 @@ import { IoMdEyeOff } from 'react-icons/io';
 import { Link } from 'react-router';
 import { AuthContext } from '../../../context/AuthContext/AuthContext';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
     const { register, handleSubmit, watch, formState: { errors }, } = useForm()
 
     const { createUser } = useContext(AuthContext);
-    console.log(createUser)
+    // console.log(createUser)
     const handleCreateUser = (data) => {
-        const email= data.email;
-        const password= data.password;
-        createUser(email,password)
-        .then((result)=>{
-            console.log(result)
-        })
-        .catch((error)=>{
-            console.log(error)
-        })
+        const email = data.email;
+        const password = data.password;
+        createUser(email, password)
+           
     }
 
     return (

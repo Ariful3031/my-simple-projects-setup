@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FiHome, FiSearch, FiChevronsLeft, FiChevronDown, FiChevronUp, FiMenu, FiMic } from "react-icons/fi";
 import { FaBlog, FaBook, FaGraduationCap, FaLock, FaSignOutAlt, FaTags, FaTicketAlt } from "react-icons/fa";
 import { NavLink, Outlet, Link, useNavigate } from "react-router-dom";
@@ -6,11 +6,12 @@ import { NavLink, Outlet, Link, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaUsersGear } from "react-icons/fa6";
 import { HiSun, HiMoon } from "react-icons/hi";
-import { IoSettings } from "react-icons/io5";
+import { AuthContext } from "../../../context/AuthContext/AuthContext";
+// import { IoSettings } from "react-icons/io5";
 
 // import Swal from "sweetalert2";
 // import { toast } from "react-toastify";
-import { MdAssignmentAdd, MdContacts, MdEditNote, MdGroups, MdOutlineReviews, MdViewModule, } from "react-icons/md";
+// import { MdAssignmentAdd, MdContacts, MdEditNote, MdGroups, MdOutlineReviews, MdViewModule, } from "react-icons/md";
 // import { Briefcase } from "lucide-react";
 
 
@@ -107,6 +108,7 @@ const DropdownItem = ({ icon, label, sidebarOpen, subLinks = [] }) => {
 
 const AdminDashboard = () => {
     const [sidebarOpen, setSidebarOpen] = useState(true);
+    const { logOutUser, currentUser } = useContext(AuthContext)
 
     const [open, setOpen] = useState(false);
 
@@ -194,7 +196,7 @@ const AdminDashboard = () => {
                                     { label: "Student List", to: "student-list" },
                                     { label: "Instructor List", to: "instructor-list" },
                                     { label: "Add User", to: "add-user" },
-                                  
+
                                 ]}
                             />
 
@@ -239,19 +241,23 @@ const AdminDashboard = () => {
                                     className="flex items-center gap-3 group"
                                 >
 
-                                    <div className="relative w-10 h-10 rounded-full overflow-hidden border-4 border-purple-500 shadow-lg">
-                                        <img
+                                    <div className="relative w-12 h-12 rounded-full overflow-hidden light:border-4 light:border-green-500 shadow-lg">
+                                        {/* <img
                                             src="https://img.freepik.com/free-vector/smiling-young-man-illustration_1308-174669.jpg?semt=ais_hybrid&w=740&q=80"
                                             alt="Name"
                                             className="w-full h-full object-cover"
-                                        />
+                                        /> */}
+
+                                        <img className='w-12 h-12  rounded-full object-cover border' src={currentUser?.photoURL || `https://ui-avatars.com/api/?name=${currentUser?.displayName}`} alt="" />
+
+
                                     </div>
                                     <div className="max-sm:flex-col md:block text-left">
                                         <p className="font-semibold text-sm text-gray-800 dark:text-white">
-                                            Ariful islam
+                                            {currentUser?.displayName}
                                         </p>
                                         <p className="text-xs text-gray-500 dark:text-gray-400">
-                                            Role: User
+                                            Role: Admin
                                         </p>
                                     </div>
                                 </button>
@@ -268,7 +274,7 @@ const AdminDashboard = () => {
 
 
 
-                                            <button
+                                            <button onClick={logOutUser}
                                                 className="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900 transition"
                                             >
                                                 <FaSignOutAlt className="text-lg" /> Logout
@@ -292,7 +298,7 @@ const AdminDashboard = () => {
 export default AdminDashboard;
 
 
-// practice puprole example dashboard Uri 
+// practice puprole example dashboard Uri
 
 // import React, { useEffect, useState } from "react";
 // import { FiHome, FiSearch, FiChevronsLeft, FiChevronDown, FiChevronUp, FiMenu, FiMic } from "react-icons/fi";

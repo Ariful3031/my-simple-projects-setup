@@ -105,10 +105,9 @@ const DropdownItem = ({ icon, label, sidebarOpen, subLinks = [] }) => {
     );
 };
 
-const StudentDashboard = () => {
+const InstructorDashboard = () => {
     const [sidebarOpen, setSidebarOpen] = useState(true);
-    const {logOutUser,currentUser}=useContext(AuthContext)
-
+    const { logOutUser, currentUser } = useContext(AuthContext)
     const [open, setOpen] = useState(false);
 
     const navigate = useNavigate();
@@ -249,10 +248,10 @@ const StudentDashboard = () => {
                                     </div>
                                     <div className="max-sm:flex-col md:block text-left">
                                         <p className="font-semibold text-sm text-gray-800 dark:text-white">
-                                            {currentUser?.dispalyName}
+                                            {currentUser?.displayName}
                                         </p>
                                         <p className="text-xs text-gray-500 dark:text-gray-400">
-                                            Role: Student
+                                            Role: Teacher
                                         </p>
                                     </div>
                                 </button>
@@ -296,5 +295,4 @@ const StudentDashboard = () => {
         </div>
     );
 };
-
-export default StudentDashboard
+export default InstructorDashboard

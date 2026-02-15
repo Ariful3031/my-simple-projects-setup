@@ -9,7 +9,16 @@ import ContactUsPage from "../components/pages/ContactPage/ContactUsPage";
 import AboutUsPage from "../components/pages/AboutUsPage/AboutUsPage";
 import CoursesPage from "../components/pages/CoursesPage/CoursesPage";
 import AdminDashboard from "../components/Dashboard/AdminDashboard/AdminDashboard";
-
+import InstrocutorList from "../components/Dashboard/AdminDashboard/UsersManagement/InstrocutorList";
+import StudentList from "../components/Dashboard/AdminDashboard/UsersManagement/StudentList";
+import AddUser from "../components/Dashboard/AdminDashboard/UsersManagement/AddUser";
+import StudentDashboard from "../components/Dashboard/StudentDashboard/StudentDashboard";
+import StudentHome from "../components/Dashboard/StudentDashboard/StudentHome/StudentHome";
+import MyCourses from "../components/Dashboard/StudentDashboard/MyCourses/MyCourses";
+import InstructorDashboard from "../components/Dashboard/InstructorsDashboard/InstructorDashboard";
+import InstructorsHome from "../components/Dashboard/InstructorsDashboard/InstructorsHome/InstructorsHome";
+import AdminHome from "../components/Dashboard/AdminDashboard/AdminHome/AdminHome";
+import Profile from "../components/pages/ProfilePage/Profile";
 
 
 
@@ -47,19 +56,65 @@ export const router = createBrowserRouter([
         element: <InstructorsPage></InstructorsPage>
       },
       {
-        path: "/blog",
-        element: <BlogPage></BlogPage>
+        path: "/profile",
+        element: <Profile></Profile>
       },
+
     ]
   },
   {
     path: "dashboard",
     element: <AdminDashboard></AdminDashboard>,
     children: [
-      // {
-      //   index: true,
-      //   element:
-      // },
+      {
+        index: true,
+        element: <AdminHome></AdminHome>
+      },
+      {
+        path: 'instructor-list',
+        element: <InstrocutorList></InstrocutorList>
+      },
+      {
+        path: 'student-list',
+        element: <StudentList></StudentList>
+      },
+      {
+        path: 'add-user',
+        element: <AddUser></AddUser>
+      },
     ]
-  }
+  },
+  {
+    path: "students-dashboard",
+    element: <StudentDashboard></StudentDashboard>,
+    children: [
+      {
+        index: true,
+        element: <StudentHome></StudentHome>
+      },
+      {
+        path: 'my-course',
+        element: <MyCourses></MyCourses>
+      },
+      {
+        path: 'student-list',
+        element: <StudentList></StudentList>
+      },
+      {
+        path: 'add-user',
+        element: <AddUser></AddUser>
+      },
+    ]
+  },
+  {
+    path: "instructors-dashboard",
+    element: <InstructorDashboard></InstructorDashboard>,
+    children: [
+      {
+        index: true,
+        element: <InstructorsHome></InstructorsHome>
+      }
+
+    ]
+  },
 ]);

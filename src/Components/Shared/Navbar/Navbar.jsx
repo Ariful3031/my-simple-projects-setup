@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router'
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
+import { AuthContext } from '../../../context/AuthContext/AuthContext';
+import { button } from 'framer-motion/client';
 
 
 function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [openImageModal, setOpenImageModal] = useState(false);
+    const { currentUser, logOutUser } = useContext(AuthContext)
+    console.log(currentUser)
     const navigate = useNavigate();
     const [isDarkMode, setIsDarkMode] = useState(
         () => localStorage.getItem("theme") === "dark"
@@ -57,7 +61,7 @@ function Navbar() {
                                     className={({ isActive }) =>
                                         `relative group transition-colors duration-300 text-sm ${isActive
                                             ? "text-primary-500"
-                                            : "hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
+                                            : "hover:text-primary-500 text-gray-500 dark:text-gray-300 dark:hover:text-primary-500"
                                         }`
                                     }
                                 >
@@ -69,9 +73,17 @@ function Navbar() {
 
                         <div className="flex gap-2 items-center">
                             {/* Login and dashboard  button*/}
-                            <button onClick={() => setOpenImageModal(!openImageModal)}>
-                                <img className='w-12 h-12 rounded-full border p-2' src="https://img.freepik.com/free-vector/smiling-young-man-illustration_1308-174669.jpg?semt=ais_hybrid&w=740&q=80" alt="" />
-                            </button>
+                            {
+                                currentUser ?
+                                    (<button onClick={() => setOpenImageModal(!openImageModal)}>
+                                        <img className='w-12 h-12 rounded-full object-cover border' src={currentUser?.photoURL || `https://ui-avatars.com/api/?name=${currentUser.displayName}`} alt="" />
+                                    </button>
+                                    ) :
+                                    (
+                                        <Link className='btn-gradient' to={`/login`}>Login</Link>
+                                    )
+                            }
+
                             {/* Dark Mode Toggle */}
                             <button
                                 onClick={toggleDarkMode}
@@ -119,13 +131,13 @@ function Navbar() {
                                     // className="absolute top-20 right-10 duration-500 bg-white w-72 text-black transform transition-all duration-500 ease-in-out translate-y-5 opacity-100"
                                     className={`absolute top-20 right-0 bg-white text-black w-60 p-2 rounded-lg shadow-lg transform transition-all duration-500 ease-in-out ${openImageModal ? "translate-y-0 opacity-100" : "-translate-y-20 opacity-0"}`}
                                 >
-                                    <h1>Name</h1>
-                                    <p>Email</p>
+                                    <h1>{currentUser?.displayName}</h1>
+                                    <p>{currentUser?.email}</p>
                                     <p className='border-b border-gray-600'></p>
 
                                     <button onClick={handleDashboard}>Dashboadrd</button>
                                     <br />
-                                    <button>Logout</button>
+                                    <button onClick={() => logOutUser()}>Logout</button>
 
                                 </div>
                             )
