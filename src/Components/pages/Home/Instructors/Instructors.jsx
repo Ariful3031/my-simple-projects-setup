@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 export const Instructors = () => {
   const teacherData = [
     {
-      id: '2',
+      id: '1',
       image: "https://img.freepik.com/free-vector/smiling-young-man-illustration_1308-174669.jpg?semt=ais_hybrid&w=740&q=80",
       name: "মাইদুল ইসলাম প্রধান (মুকুল)",
       designation: "বি.এ (অনার্স), এম.এ (ইংরেজি), বিসিএস ক্যাডার, প্রতিষ্ঠাতা বিদ্যাবাড়ি",
@@ -31,7 +31,7 @@ export const Instructors = () => {
 
     },
     {
-      id: '3',
+      id: '4',
       image: "https://img.freepik.com/free-vector/smiling-young-man-illustration_1308-174669.jpg?semt=ais_hybrid&w=740&q=80",
       name: "মো. জিহাদ হোসেন",
       designation: "শিক্ষক (ইংরেজি), বিদ্যাবাড়ি",
