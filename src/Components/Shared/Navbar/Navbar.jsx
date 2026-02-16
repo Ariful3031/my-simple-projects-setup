@@ -45,8 +45,8 @@ function Navbar() {
 
     return (
         <>
-            <nav className=' className="fixed top-0 left-0 right-0 z-50 shadow-md transition-colors duration-500"'>
-                <div className="px-4 sm:px-5 md:px-10 lg:px-12 xl:px-20 shadow-md">
+            <nav className="fixed top-0 left-0 w-full z-50 bg-white dark:bg-black_primary-900 shadow-md transition-colors duration-500">
+                <div className="px-4 sm:px-5 md:px-10 lg:px-12 xl:px-20">
 
                     <div className="relative flex justify-between items-center py-3">
                         {/* Logo */}

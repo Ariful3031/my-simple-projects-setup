@@ -15,8 +15,8 @@
 }
 
 .section_title {
-    @apply text-center text-primary-400 md:text-5xl font-extrabold my-5
+    @apply text-center text-primary-400 md:text-5xl font-extrabold mt-10 mb-5
 }
 .section_subtitle {
-    @apply text-center text-[#4B5563] dark:text-[#D1D5DB]  text-xl my-3
+    @apply text-center text-[#4B5563] dark:text-[#D1D5DB]  text-xl mb-5 md:mb-10 my-3
 }

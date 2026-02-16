@@ -2,7 +2,7 @@ import React from 'react'
 import { Player } from '@lottiefiles/react-lottie-player';
 const AboutUsPage = () => {
   return (
-    <div>
+    <div className=''>
       <h1>this is our about-us page</h1>
       <Player
         autoplay

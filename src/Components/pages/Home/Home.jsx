@@ -9,6 +9,7 @@ import { LatestFeature } from './LatestFeature/LatestFeature'
 import { FeedBacks } from './FeedBacks/FeedBacks'
 import { Podcasts } from './Podcasts/Podcasts'
 import { PlacedAt } from './PlacedAt/PlacedAt'
+import { Blog } from './Blog/Blog'
 
 const Home = () => {
     return (
@@ -22,6 +23,7 @@ const Home = () => {
             <LatestFeature></LatestFeature>
             <FeedBacks></FeedBacks>
             <Podcasts></Podcasts>
+            <Blog></Blog>
             <PlacedAt></PlacedAt>
 
             {/* <h1 className='bg-primary-50'>Hello i am Ariful islam</h1>

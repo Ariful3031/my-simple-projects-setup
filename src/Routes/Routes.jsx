@@ -19,6 +19,7 @@ import InstructorDashboard from "../components/Dashboard/InstructorsDashboard/In
 import InstructorsHome from "../components/Dashboard/InstructorsDashboard/InstructorsHome/InstructorsHome";
 import AdminHome from "../components/Dashboard/AdminDashboard/AdminHome/AdminHome";
 import Profile from "../components/pages/ProfilePage/Profile";
+import InstructorsDetails from "../components/pages/Home/Instructors/InstructorsDetails";
 
 
 
@@ -56,8 +57,16 @@ export const router = createBrowserRouter([
         element: <InstructorsPage></InstructorsPage>
       },
       {
+        path: "/blog",
+        element: <BlogPage></BlogPage>
+      },
+      {
         path: "/profile",
         element: <Profile></Profile>
+      },
+      {
+        path: "instructor/details/:id",
+        element: <InstructorsDetails></InstructorsDetails>
       },
 
     ]
@@ -84,17 +93,14 @@ export const router = createBrowserRouter([
       },
     ]
   },
+
   {
-    path: "students-dashboard",
-    element: <StudentDashboard></StudentDashboard>,
+    path: "instructors-dashboard",
+    element: <InstructorDashboard></InstructorDashboard>,
     children: [
       {
         index: true,
-        element: <StudentHome></StudentHome>
-      },
-      {
-        path: 'my-course',
-        element: <MyCourses></MyCourses>
+        element: <InstructorsHome></InstructorsHome>
       },
       {
         path: 'student-list',
@@ -107,13 +113,17 @@ export const router = createBrowserRouter([
     ]
   },
   {
-    path: "instructors-dashboard",
-    element: <InstructorDashboard></InstructorDashboard>,
+    path: "students-dashboard",
+    element: <StudentDashboard></StudentDashboard>,
     children: [
       {
         index: true,
-        element: <InstructorsHome></InstructorsHome>
-      }
+        element: <StudentHome></StudentHome>
+      },
+      {
+        path: 'my-course',
+        element: <MyCourses></MyCourses>
+      },
 
     ]
   },
