@@ -13,8 +13,7 @@ const CoursesPage = () => {
         <img
           src={Image}
           alt="Full Page"
-          className="w-full transition-transform duration-[1000ms] ease-linear group-hover:translate-y-[-49%]
-    "
+          className="w-full transition-transform duration-[1000ms] ease-linear group-hover:translate-y-[-49%]"
         />
       </div>
     </div>

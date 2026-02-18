@@ -3,6 +3,7 @@ export const tagTypes = {
  
   COURSE: "course",
   CONTACT: "contact",
+  USER: "user",
  
 };
 
