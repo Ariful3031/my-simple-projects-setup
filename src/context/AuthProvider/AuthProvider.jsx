@@ -4,12 +4,14 @@ import { useEffect, useState } from "react";
 import auth from "../../firebase/firebase.config";
 import { toast } from "react-toastify";
 import { useRegisterUserMutation } from "../../redux/api/authApi";
+import { useLocation, useNavigate } from "react-router";
 
 
 
 const AuthProvider = ({ children }) => {
-    const [registerUser, { isLoading, error }] = useRegisterUserMutation()
-
+   
+    // const location = useLocation();
+    // const navigate = useNavigate()
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -29,49 +31,23 @@ const AuthProvider = ({ children }) => {
 
     // create user / register user 
     const createUser = async (email, password) => {
-        try {
-            const result = await createUserWithEmailAndPassword(auth, email, password);
-            const userInfo = {
-                email: result?.user?.email,
-                emailVerified: result?.user?.emailVerified,
-                displayName: result?.user?.displayName,
-                photoURL: result?.user?.photoURL,
-                creationTime: result?.user?.metadata?.creationTime,
-                lastSignInTime: result?.user?.metadata?.lastSignInTime,
-                accessToken: result?.user?.accessToken,
-                phoneNumber: result?.user?.phoneNumber,
-            };
-            // এখানে Redux / RTK Query mutation call করো
-            await registerUser(userInfo).unwrap();
-            toast.success('Register successful');
-            return result.user;
-
-        } catch (err) {
-            toast.error(err.message || "Something went wrong");
-            console.log(err);
-        }
+        setLoading (true);
+        return createUserWithEmailAndPassword(auth, email, password);
+      
     };
 
     // sign user / login user 
     const signInUser = (email, password) => {
-        signInWithEmailAndPassword(auth, email, password)
-            .then((result) => {
-                // Signed in 
 
-                console.log(user)
-                toast.success("login successfull")
-                return result.user;
-            })
-            .catch((err) => {
-                toast.error(err.message)
-                console.log(err.message)
-            });
+        setLoading(true)
+        return signInWithEmailAndPassword(auth, email, password)
     }
+
+
     const logOutUser = () => {
-        console.log('click logout')
         signOut(auth)
             .then(() => {
-                toast.success('Sing-out Successful')
+                toast.success('Logout Successful')
                 // Sign-out successful.
             }).catch((err) => {
                 toast.error(err.message)
@@ -81,45 +57,14 @@ const AuthProvider = ({ children }) => {
 
 
     // google login 
-    const handleGoogleLogin = async () => {
-
-        try {
-            const result = await signInWithPopup(auth, googleProvider)
-            console.log(result)
-
-            const userInfo = {
-                email: result?.user?.email,
-                emailVerified: result?.user?.emailVerified,
-                displayName: result?.user?.displayName,
-                photoURL: result?.user?.photoURL,
-                creationTime: result?.user?.metadata?.creationTime,
-                lastSignInTime: result?.user?.metadata?.lastSignInTime,
-                accessToken: result?.user?.accessToken,
-                phoneNumber: result?.user?.phoneNumber,
-            };
-
-            await registerUser(userInfo).unwrap();
-            toast.success('Register successful');
-            return result.user;
-
-        } catch (err) {
-            toast.error(err.message || "Something went wrong");
-            // console.log(err);
-        }
-
-
-
-
-        // .then(() => {
-        //     // console.log(result)
-        //     toast.success("login successful")
-        // }).catch((err) => {
-        //     console.log(err.message)
-        //     toast.error(err.message)
-        // });
+    const handleGoogleLogin =() => {
+        setLoading(true)
+        return signInWithPopup(auth, googleProvider)
     }
 
     const authInfo = {
+        loading,
+        setLoading,
         currentUser: user,
         createUser,
         signInUser,

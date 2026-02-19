@@ -3,17 +3,22 @@ import { Link, NavLink, useNavigate } from 'react-router'
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 import { AuthContext } from '../../../context/AuthContext/AuthContext';
 import { button } from 'framer-motion/client';
+import useCurrentUser from '../../hooks/useCurrentUser';
+import useCurrentRole from '../../hooks/useCurrentRole';
+import useDatabaseCurrentUser from '../../hooks/useDatabaseCurrentUser';
 
 
 function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [openImageModal, setOpenImageModal] = useState(false);
-    const { currentUser, logOutUser } = useContext(AuthContext)
-    console.log(currentUser)
+    const { logOutUser } = useContext(AuthContext)
+    const currentUser = useCurrentUser();
     const navigate = useNavigate();
     const [isDarkMode, setIsDarkMode] = useState(
         () => localStorage.getItem("theme") === "dark"
     );
+    const { currentRole, roleLoading } = useCurrentRole();
+    // console.log(currentRole)
     const navItems = [
         { name: "Home", href: "/" },
         { name: "Courses", href: "/courses" },
@@ -29,7 +34,10 @@ function Navbar() {
     };
 
     const handleDashboard = () => {
-        navigate('/dashboard')
+        {
+            currentRole === "admin" ? navigate('/dashboard') : currentRole === "teacher" ? navigate('/instructors-dashboard') : currentRole === "student" && navigate('/students-dashboard')
+        }
+
     }
 
     useEffect(() => {
@@ -42,6 +50,8 @@ function Navbar() {
         }
     }, [isDarkMode]);
 
+    const currentDatabaseUser = useDatabaseCurrentUser();
+    console.log(currentDatabaseUser)
 
     return (
         <>

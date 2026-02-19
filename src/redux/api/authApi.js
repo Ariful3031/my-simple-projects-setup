@@ -3,12 +3,12 @@ import { tagTypes } from "../tagTypes";
 
 export const authApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
-        getUserRole: builder.query({
-            query: (email) => {
+        getSingleUserAndRole: builder.query({
+            query: ({ email, fields }) => {
                 return {
-                    url: `/users/${email}/role`,
+                    url: `/users/${email}`,
                     method: "GET",
-                    // params: params || {}
+                    params: fields ? { fields } : {}
                 }
             },
             providesTags: [tagTypes.USER],
@@ -26,6 +26,6 @@ export const authApi = baseApi.injectEndpoints({
 })
 
 export const {
-    usegetUserRoleQuery,
+    useGetSingleUserAndRoleQuery,
     useRegisterUserMutation,
 } = authApi;

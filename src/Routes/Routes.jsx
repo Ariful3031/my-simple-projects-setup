@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import Home from "../components/pages/Home/Home";
 import Login from "../components/pages/login/Login";
@@ -20,6 +20,13 @@ import InstructorsHome from "../components/Dashboard/InstructorsDashboard/Instru
 import AdminHome from "../components/Dashboard/AdminDashboard/AdminHome/AdminHome";
 import Profile from "../components/pages/ProfilePage/Profile";
 import InstructorsDetails from "../components/pages/Home/Instructors/InstructorsDetails";
+import UpdateCourse from "../components/Dashboard/AdminDashboard/CoursesManagement/UpdateCourse";
+import CoursesList from "../components/Dashboard/AdminDashboard/CoursesManagement/CoursesList";
+import CreateCourse from "../components/Dashboard/AdminDashboard/CoursesManagement/CreateCourse";
+import ProtectedRoute from "./ProtectedRoute";
+import AdminRoute from "./AdminRoute";
+
+
 
 
 
@@ -42,7 +49,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "/courses",
-        element: <CoursesPage></CoursesPage>
+        element: <AdminRoute>
+          <CoursesPage></CoursesPage>
+        </AdminRoute>
+
+
+
       },
       {
         path: "/about_us",
@@ -60,10 +72,10 @@ export const router = createBrowserRouter([
         path: "/blog",
         element: <BlogPage></BlogPage>
       },
-      {
-        path: "/profile",
-        element: <Profile></Profile>
-      },
+      // {
+      //   path: "/profile",
+      //   element: <Profile></Profile>
+      // },
       {
         path: "instructor/details/:id",
         element: <InstructorsDetails></InstructorsDetails>
@@ -80,6 +92,12 @@ export const router = createBrowserRouter([
         element: <AdminHome></AdminHome>
       },
       {
+        path: "profile",
+        element: <Profile></Profile>
+      },
+
+      // user management section 
+      {
         path: 'instructor-list',
         element: <InstrocutorList></InstrocutorList>
       },
@@ -90,6 +108,19 @@ export const router = createBrowserRouter([
       {
         path: 'add-user',
         element: <AddUser></AddUser>
+      },
+      // courses management section 
+      {
+        path: 'create-course',
+        element: <CreateCourse></CreateCourse>
+      },
+      {
+        path: 'update-course',
+        element: <UpdateCourse></UpdateCourse>
+      },
+      {
+        path: 'course-list',
+        element: <CoursesList></CoursesList>
       },
     ]
   },
@@ -103,12 +134,21 @@ export const router = createBrowserRouter([
         element: <InstructorsHome></InstructorsHome>
       },
       {
-        path: 'student-list',
-        element: <StudentList></StudentList>
+        path: "profile",
+        element: <Profile></Profile>
+      },
+      // courses management section 
+      {
+        path: 'create-course',
+        element: <CreateCourse></CreateCourse>
       },
       {
-        path: 'add-user',
-        element: <AddUser></AddUser>
+        path: 'update-course',
+        element: <UpdateCourse></UpdateCourse>
+      },
+      {
+        path: 'course-list',
+        element: <CoursesList></CoursesList>
       },
     ]
   },
@@ -119,6 +159,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <StudentHome></StudentHome>
+      },
+      {
+        path: "profile",
+        element: <Profile></Profile>
       },
       {
         path: 'my-course',

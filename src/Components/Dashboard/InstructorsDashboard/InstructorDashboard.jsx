@@ -1,11 +1,13 @@
-import { FaBlog, FaBook, FaGraduationCap, FaLock, FaSignOutAlt, FaTags, FaTicketAlt } from "react-icons/fa";
+import { FaBlog, FaBook, FaGraduationCap, FaLock, FaSignOutAlt, FaTags, FaTicketAlt, FaUserCircle } from "react-icons/fa";
 import { NavLink, Outlet, Link, useNavigate } from "react-router-dom";
 // eslint-disable-next-line no-unused-vars
 import { AnimatePresence, motion } from "framer-motion";
 import { FaUsersGear } from "react-icons/fa6";
 import { HiSun, HiMoon } from "react-icons/hi";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../context/AuthContext/AuthContext";
+import { FiChevronDown, FiChevronsLeft, FiChevronUp, FiHome, FiMenu, FiSearch } from "react-icons/fi";
+import useDatabaseCurrentUser from "../../hooks/useDatabaseCurrentUser";
 // import { IoSettings } from "react-icons/io5";
 
 // import Swal from "sweetalert2";
@@ -108,8 +110,9 @@ const DropdownItem = ({ icon, label, sidebarOpen, subLinks = [] }) => {
 const InstructorDashboard = () => {
     const [sidebarOpen, setSidebarOpen] = useState(true);
     const { logOutUser, currentUser } = useContext(AuthContext)
-    const [open, setOpen] = useState(false);
 
+    const [open, setOpen] = useState(false);
+    const { currentDatabaseUser, isLoading } = useDatabaseCurrentUser()
     const navigate = useNavigate();
     const [darkMode, setDarkMode] = useState(
         () => localStorage.getItem("theme") === "dark",
@@ -162,7 +165,7 @@ const InstructorDashboard = () => {
                         <ul className="space-y-1 text-sm">
                             <li className="relative group">
                                 <NavLink
-                                    to="#"
+                                    to="/instructors-dashboard"
                                     className={({
                                         isActive,
                                     }) => `group relative flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all ${isActive
@@ -177,12 +180,22 @@ const InstructorDashboard = () => {
                                         <span className="whitespace-nowrap">Dashboard</span>
                                     )}
                                 </NavLink>
+
                             </li>
 
 
-                            {sidebarOpen && (
+                            <DropdownItem
+                                icon={<FaUsersGear />}
+                                label="Manage Course"
+                                sidebarOpen={sidebarOpen}
+                                subLinks={[
+                                    { label: "Course List", to: "course-list" },
+                                    { label: "Create Course", to: "create-course" },
+                                ]}
+                            />
+                            {/* {sidebarOpen && (
                                 <li className="text-xs text-gray-400 dark:text-gray-500 py-4 px-3 tracking-wide uppercase">
-                                    Manage Users
+                                    My Course
                                 </li>
                             )}
 
@@ -196,7 +209,7 @@ const InstructorDashboard = () => {
                                     { label: "Add User", to: "add-user" },
 
                                 ]}
-                            />
+                            /> */}
 
                         </ul>
                     </nav>
@@ -239,19 +252,21 @@ const InstructorDashboard = () => {
                                     className="flex items-center gap-3 group"
                                 >
 
-                                    <div className="relative w-10 h-10 rounded-full overflow-hidden border-4 border-purple-500 shadow-lg">
-                                        <img
-                                            src="https://img.freepik.com/free-vector/smiling-young-man-illustration_1308-174669.jpg?semt=ais_hybrid&w=740&q=80"
+                                    <div className="relative w-10 h-10 rounded-full flex justify-center items-center overflow-hidden border-4 border-purple-500 shadow-lg">
+                                        {/* <img
+                                            src={currentDatabaseUser?.image}
                                             alt="Name"
                                             className="w-full h-full object-cover"
-                                        />
+                                        /> */}
+                                        <img className='w-12 h-12  rounded-full object-cover border' src={currentDatabaseUser?.photoURL || `https://ui-avatars.com/api/?name=${currentDatabaseUser?.displayName}`} alt="" />
+
                                     </div>
                                     <div className="max-sm:flex-col md:block text-left">
                                         <p className="font-semibold text-sm text-gray-800 dark:text-white">
-                                            {currentUser?.displayName}
+                                            {currentDatabaseUser?.displayName}
                                         </p>
-                                        <p className="text-xs text-gray-500 dark:text-gray-400">
-                                            Role: Teacher
+                                        <p className="text-xs text-center text-gray-500 dark:text-gray-400">
+                                            {currentDatabaseUser?.role}
                                         </p>
                                     </div>
                                 </button>
@@ -295,4 +310,5 @@ const InstructorDashboard = () => {
         </div>
     );
 };
+
 export default InstructorDashboard
