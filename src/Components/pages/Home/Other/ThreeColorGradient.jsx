@@ -67,5 +67,4 @@ const ThreeColorGradient = () => {
         </div>
     )
 }
-
 export default ThreeColorGradient

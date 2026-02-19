@@ -23,8 +23,8 @@ import InstructorsDetails from "../components/pages/Home/Instructors/Instructors
 import UpdateCourse from "../components/Dashboard/AdminDashboard/CoursesManagement/UpdateCourse";
 import CoursesList from "../components/Dashboard/AdminDashboard/CoursesManagement/CoursesList";
 import CreateCourse from "../components/Dashboard/AdminDashboard/CoursesManagement/CreateCourse";
-import ProtectedRoute from "./ProtectedRoute";
-import AdminRoute from "./AdminRoute";
+import CourseDetails from "../Components/pages/CoursesPage/CourseDetails";
+
 
 
 
@@ -49,12 +49,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/courses",
-        element: <AdminRoute>
-          <CoursesPage></CoursesPage>
-        </AdminRoute>
-
-
-
+        element: <CoursesPage></CoursesPage>
+      },
+      {
+        path: "/course/:id",
+        element: <CourseDetails></CourseDetails>
       },
       {
         path: "/about_us",
