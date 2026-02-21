@@ -17,6 +17,37 @@
 .section_title {
     @apply text-center text-primary-400 md:text-5xl font-extrabold mt-10 mb-5
 }
+
 .section_subtitle {
-    @apply text-center text-[#4B5563] dark:text-[#D1D5DB]  text-xl mb-5 md:mb-10 my-3
+    @apply text-center text-[#4B5563] dark:text-[#D1D5DB] text-xl mb-5 md:mb-10 my-3
 }
+
+
+/* button rotate 90 dgree  */
+/* .box {
+  width: 100px;
+  height: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.part {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transition: transform 0.4s ease;
+}
+
+
+.part2 {
+ 
+  transform: translateY(-100%); 
+}
+
+.box:hover .part2 {
+  transform: translateY(0); 
+}
+
+.box:hover .part1 {
+  transform: translateY(100%); 
+} */

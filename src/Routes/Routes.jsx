@@ -24,6 +24,7 @@ import UpdateCourse from "../components/Dashboard/AdminDashboard/CoursesManageme
 import CoursesList from "../components/Dashboard/AdminDashboard/CoursesManagement/CoursesList";
 import CreateCourse from "../components/Dashboard/AdminDashboard/CoursesManagement/CreateCourse";
 import CourseDetails from "../Components/pages/CoursesPage/CourseDetails";
+import CourseCheckoutPage from "../components/pages/CourseCheckoutPage/CourseCheckoutPage";
 
 
 
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
       {
         path: "/course/:id",
         element: <CourseDetails></CourseDetails>
+      },
+      {
+        path: "/course-checkout/:id",
+        element: <CourseCheckoutPage></CourseCheckoutPage>
       },
       {
         path: "/about_us",
