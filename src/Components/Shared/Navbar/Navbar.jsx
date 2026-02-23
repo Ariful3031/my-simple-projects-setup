@@ -60,7 +60,7 @@ function Navbar() {
 
                     <div className="relative flex justify-between items-center py-3">
                         {/* Logo */}
-                        <Link to='/' className="btn btn-ghost text-xl dark:text-white">Online Learning</Link>
+                        <Link to='/' className="btn btn-ghost text-xl dark:text-white">BrainLoom Learning</Link>
 
                         {/* Desktop Nav */}
                         <ul className="hidden sm:flex gap-6 text-white text-lg font-medium">

@@ -10,6 +10,7 @@ import { FeedBacks } from './FeedBacks/FeedBacks'
 import { Podcasts } from './Podcasts/Podcasts'
 import { PlacedAt } from './PlacedAt/PlacedAt'
 import { Blog } from './Blog/Blog'
+import FAQSection from './FAQSection/FAQSection'
 
 const Home = () => {
     return (
@@ -20,11 +21,12 @@ const Home = () => {
             <AllCourses></AllCourses>
             <Instructors></Instructors>
             <TrendingCategories></TrendingCategories>
-            <LatestFeature></LatestFeature>
+            {/* <LatestFeature></LatestFeature> */}
             <FeedBacks></FeedBacks>
             <Podcasts></Podcasts>
             <Blog></Blog>
             <PlacedAt></PlacedAt>
+            <FAQSection></FAQSection>
 
             {/* <h1 className='bg-primary-50'>Hello i am Ariful islam</h1>
             <h1 className='bg-primary-100'>Hello i am Ariful islam</h1>
