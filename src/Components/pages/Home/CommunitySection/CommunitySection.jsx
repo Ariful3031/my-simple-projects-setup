@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from "framer-motion";
 import { FaUserGraduate } from 'react-icons/fa';
+import StatsSection from '../../AboutUsPage/StatsSection/StatsSection';
 
 export const CommunitySection = () => {
     const CommunityData = [
@@ -40,7 +41,7 @@ export const CommunitySection = () => {
             >
                 <h1 className='section_title'>Our Growing Community</h1>
                 <h3 className='section_subtitle'>Join thousands of learners and experts in our thriving educational ecosystem.</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 md:gap-10  ">
+                {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 md:gap-10  ">
                     {
                         CommunityData.map((community) => 
                             <div key={community?.id} className="border text-primary-600 border-gray-300 dark:border-black_primary-600 hover:border-primary-600 dark:hover:border-gray-300 p-5 flex flex-col items-center justify-center shadow-lg hover:shadow-2xl duration-300 rounded-xl ">
@@ -53,7 +54,8 @@ export const CommunitySection = () => {
                             </div>
                         )
                     }
-                </div>
+                </div> */}
+                <StatsSection></StatsSection>
             </motion.div>
         </div>
     )
