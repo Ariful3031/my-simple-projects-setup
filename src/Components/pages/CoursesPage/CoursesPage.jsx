@@ -2,13 +2,9 @@ import React from 'react'
 
 import { useGetCourseListQuery } from '../../../redux/api/couresApi'
 import CourseCard from './CourseCard';
+ 
 
-const CoursesPage = () => {
-  const { data, isLoading, error } = useGetCourseListQuery();
-  console.log(data)
-
-
-  const courses = [
+export const allCoursesData = [
 
     {
       id: "1",
@@ -370,6 +366,12 @@ const CoursesPage = () => {
     }
 
   ];
+const CoursesPage = () => {
+  const { data, isLoading, error } = useGetCourseListQuery();
+  console.log(data)
+
+
+  
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading courses</p>;
@@ -385,7 +387,7 @@ const CoursesPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
 
         {
-          courses.map((course) => (
+          allCoursesData.map((course) => (
 
 
             <CourseCard key={course.id} course={course} ></CourseCard>

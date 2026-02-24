@@ -19,12 +19,13 @@ import InstructorDashboard from "../components/Dashboard/InstructorsDashboard/In
 import InstructorsHome from "../components/Dashboard/InstructorsDashboard/InstructorsHome/InstructorsHome";
 import AdminHome from "../components/Dashboard/AdminDashboard/AdminHome/AdminHome";
 import Profile from "../components/pages/ProfilePage/Profile";
-import InstructorsDetails from "../components/pages/Home/Instructors/InstructorsDetails";
+// import InstructorsDetails from "../components/pages/Home/Instructors/InstructorsDetails";
 import UpdateCourse from "../components/Dashboard/AdminDashboard/CoursesManagement/UpdateCourse";
 import CoursesList from "../components/Dashboard/AdminDashboard/CoursesManagement/CoursesList";
 import CreateCourse from "../components/Dashboard/AdminDashboard/CoursesManagement/CreateCourse";
 import CourseDetails from "../Components/pages/CoursesPage/CourseDetails";
 import CourseCheckoutPage from "../components/pages/CourseCheckoutPage/CourseCheckoutPage";
+import InstructorDetails from "../components/pages/Home/Instructors/InstructorDetails/InstructorDetails";
 
 
 
@@ -73,6 +74,10 @@ export const router = createBrowserRouter([
         element: <InstructorsPage></InstructorsPage>
       },
       {
+        path: "instructors/instructor/details/:id",
+        element: <InstructorDetails></InstructorDetails>
+      },
+      {
         path: "/blog",
         element: <BlogPage></BlogPage>
       },
@@ -82,8 +87,9 @@ export const router = createBrowserRouter([
       // },
       {
         path: "instructor/details/:id",
-        element: <InstructorsDetails></InstructorsDetails>
+        element: <InstructorDetails></InstructorDetails>
       },
+      
 
     ]
   },

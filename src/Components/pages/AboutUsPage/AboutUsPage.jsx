@@ -7,14 +7,16 @@ import MeetTeam from "./MeetTeam/MeetTeam";
 import WhyChooseUs from "./WhyChooseUs/WhyChooseUs";
 import OurStory from "./OurStory/OurStory";
 import AboutUsHero from "./AboutUsHero/AboutUsHero";
+import FooterSubBannerCta from "../../Shared/FooterSubBannerCta/FooterSubBannerCta";
 
 const AboutUsPage = () => {
 
-
-
-
-
-
+  const footerSubBannerCtaInfo = {
+    title: "Join Our Learning Community Today",
+    buttonName: "Browse Courses",
+    buttonLink: "/courses",
+  }
+  
   return (
     <div className="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
 
@@ -37,16 +39,7 @@ const AboutUsPage = () => {
 
       <WhyChooseUs></WhyChooseUs>
       {/*  CTA  */}
-      <div className="py-20 bg-indigo-600 text-white text-center">
-        <div className="max-w-3xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Join Our Learning Community Today
-          </h2>
-          <button className="mt-6 px-8 py-3 bg-white text-indigo-600 font-semibold rounded-full shadow-lg hover:scale-105 transition">
-            Browse Courses
-          </button>
-        </div>
-      </div>
+      <FooterSubBannerCta footerSubBannerCtaInfo={footerSubBannerCtaInfo}></FooterSubBannerCta>
     </div>
   );
 };
