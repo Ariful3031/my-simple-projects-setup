@@ -13,6 +13,18 @@ export const authApi = baseApi.injectEndpoints({
             },
             providesTags: [tagTypes.USER],
         }),
+
+        getAllUsersAdmin: builder.query({
+            query: (params) => {
+                return {
+                    url: `/users`,
+                    method: "GET",
+                    params
+                }
+            },
+            providesTags: [tagTypes.USER],
+        }),
+
         registerUser: builder.mutation({
             query: (userInfo) => ({
                 url: `/users`,
@@ -20,12 +32,22 @@ export const authApi = baseApi.injectEndpoints({
                 body: userInfo
             }),
             providesTags: [tagTypes.USER],
-        })
+        }),
 
+        updateSingleUser: builder.mutation({
+            query: ({ id, data }) => ({
+                url: `/users/${id}`,
+                method: "PATCH",
+                body: data
+            }),
+            invalidatesTags: [tagTypes.USER],
+        })
     })
 })
 
 export const {
     useGetSingleUserAndRoleQuery,
+    useGetAllUsersAdminQuery,
     useRegisterUserMutation,
+    useUpdateSingleUserMutation,
 } = authApi;

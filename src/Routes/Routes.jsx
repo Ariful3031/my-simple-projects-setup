@@ -26,6 +26,8 @@ import CreateCourse from "../components/Dashboard/AdminDashboard/CoursesManageme
 import CourseDetails from "../Components/pages/CoursesPage/CourseDetails";
 import CourseCheckoutPage from "../components/pages/CourseCheckoutPage/CourseCheckoutPage";
 import InstructorDetails from "../components/pages/Home/Instructors/InstructorDetails/InstructorDetails";
+import UpdateUser from "../Components/Dashboard/AdminDashboard/UsersManagement/UpdateUser";
+import UpdateInstructor from "../Components/Dashboard/AdminDashboard/UsersManagement/UpdateInstructor";
 
 
 
@@ -112,6 +114,11 @@ export const router = createBrowserRouter([
         element: <InstrocutorList></InstrocutorList>
       },
       {
+        path: 'update-instructor/:email',
+        element: <UpdateInstructor></UpdateInstructor>
+      },
+      
+      {
         path: 'student-list',
         element: <StudentList></StudentList>
       },
@@ -119,7 +126,12 @@ export const router = createBrowserRouter([
         path: 'add-user',
         element: <AddUser></AddUser>
       },
-      // courses management section 
+      {
+        path: 'update-user/:email',
+        element: <UpdateUser></UpdateUser>
+      },
+      
+      
       {
         path: 'create-course',
         element: <CreateCourse></CreateCourse>
