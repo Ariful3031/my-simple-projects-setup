@@ -26,7 +26,7 @@ const StudentFeedbacks = ({ teacher }) => {
             </h2>
 
             <div className="w-full mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-8 mt-10">
-                {studentFeedbacks.map((feedback) => (
+                {studentFeedbacks?.map((feedback) => (
                     <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 border border-gray-100 dark:border-gray-700 group">
 
                         {/* Quote Icon */}

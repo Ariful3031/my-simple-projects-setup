@@ -51,7 +51,7 @@ function Navbar() {
     }, [isDarkMode]);
 
     const currentDatabaseUser = useDatabaseCurrentUser();
-    console.log(currentDatabaseUser)
+    // console.log(currentDatabaseUser)
 
     return (
         <>

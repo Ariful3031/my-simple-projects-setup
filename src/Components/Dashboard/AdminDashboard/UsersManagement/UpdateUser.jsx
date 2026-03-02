@@ -53,6 +53,7 @@ const UpdateUser = () => {
                 role: data.role,
                 photoURL: data.photoURL,
             };
+            console.log(data?._id)
 
             const res = await updateSingleUser({
                 id: data._id,

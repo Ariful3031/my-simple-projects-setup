@@ -1,13 +1,15 @@
 import React from 'react'
-import { allCoursesData } from '../../../../CoursesPage/CoursesPage';
+// import { allCoursesData } from '../../../../CoursesPage/CoursesPage';
 import CourseCard from '../../../../CoursesPage/CourseCard';
+import { useGetCourseListQuery } from '../../../../../../redux/api/couresApi';
 
 const InstructorCourses = ({ teacher }) => {
+    const { data, isLoading, error } = useGetCourseListQuery();
+    const allCoursesData = data;
 
     // console.log(teacher?.courses)
-    const teacherCourseIds = teacher?.courses.map((course) => course?.courseId)
-    console.log(teacherCourseIds)
-
+    const teacherCourseIds = teacher?.courses?.map((course) => course?.courseId)
+    // console.log(teacherCourseIds)
 
     const instructorCoursesData = allCoursesData.filter((course) => teacherCourseIds.includes(course.id));
 
@@ -19,7 +21,7 @@ const InstructorCourses = ({ teacher }) => {
                     Courses by Instructor
                 </h2>
                 <div className="text-center py-10 text-red-500">
-                   No Instructor Course Found
+                    No Instructor Course Found
                 </div>
             </div>
 

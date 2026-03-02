@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const CourseCard = ({ course }) => {
-  console.log(course)
+  // console.log(course)
   return (
     <div className=" dark:bg-slate-700  rounded-xl shadow-md overflow-hidden border dark:border-gray-500">
 
@@ -34,7 +34,7 @@ const CourseCard = ({ course }) => {
                 {/* Discount Badge */}
                 {course?.discount?.percentage > 0 && (
                   <div className="absolute right-3 bottom-3 bg-red-600 text-white text-xs px-2 py-1 rounded-full">
-                    {course.discount.percentage}% ছাড়
+                    {course?.discount?.percentage}% ছাড়
                   </div>
                 )}
               </div>
