@@ -18,7 +18,7 @@ const InstructorDetails = () => {
     const { id } = useParams();
     console.log(id)
 
-    const teacher = teacherData.find((t) => t._id === id);
+    const teacher = teacherData?.find((t) => t._id === id);
 
     if (!teacher) {
         return (

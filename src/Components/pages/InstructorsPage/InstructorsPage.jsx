@@ -11,11 +11,10 @@ import { useGetAllUsersAdminQuery } from '../../../redux/api/authApi'
 const InstructorsPage = () => {
 
   const [searchTerm, setSearchTerm] = useState("");
-  const [orderBy, setOrderBy] = useState("latest");
-  const { data, isLoading } = useGetAllUsersAdminQuery();
+  const [categoryTerm, setCategoryTerm] = useState("")
+
+  const { data, isLoading } = useGetAllUsersAdminQuery({ searchText: searchTerm, categoryRole: categoryTerm });
   const teacherData = data;
-
-
 
 
   const subBannerData = {
@@ -31,7 +30,12 @@ const InstructorsPage = () => {
     <div className="bg-white dark:bg-gray-900 min-h-screen transition-colors duration-300">
 
       <HeroSubBanner subBannerData={subBannerData}></HeroSubBanner>
-      <InstructorFilterBar></InstructorFilterBar>
+      <InstructorFilterBar
+        setSearchTerm={setSearchTerm}
+        searchTerm={searchTerm}
+        categoryTerm={categoryTerm}
+        setCategoryTerm={setCategoryTerm}
+      ></InstructorFilterBar>
       <InstructorGrid teacherData={teacherData}></InstructorGrid>
     </div>
   )

@@ -55,6 +55,7 @@ const UpdateInstructor = () => {
                 role: data.role,
                 photoURL: data.photoURL,
             };
+            console.log(updateData);
 
             const res = await updateSingleUser({
                 id: data._id,

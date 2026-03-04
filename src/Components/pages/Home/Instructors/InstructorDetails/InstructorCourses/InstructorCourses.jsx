@@ -11,9 +11,9 @@ const InstructorCourses = ({ teacher }) => {
     const teacherCourseIds = teacher?.courses?.map((course) => course?.courseId)
     // console.log(teacherCourseIds)
 
-    const instructorCoursesData = allCoursesData.filter((course) => teacherCourseIds.includes(course.id));
+    const instructorCoursesData = allCoursesData?.filter((course) => teacherCourseIds.includes(course.id));
 
-    if (instructorCoursesData.length < 1) {
+    if (instructorCoursesData?.length < 1) {
         return (
 
             <div className="py-4 px-6 bg-gray-50 dark:bg-gray-900">

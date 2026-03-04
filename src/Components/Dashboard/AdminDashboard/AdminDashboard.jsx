@@ -8,6 +8,7 @@ import { FaUsersGear } from "react-icons/fa6";
 import { HiSun, HiMoon } from "react-icons/hi";
 import { AuthContext } from "../../../context/AuthContext/AuthContext";
 import useDatabaseCurrentUser from "../../hooks/useDatabaseCurrentUser";
+// import useDatabaseCurrentUser from "../../hooks/useDatabaseCurrentUser";
 // import { IoSettings } from "react-icons/io5";
 
 // import Swal from "sweetalert2";
