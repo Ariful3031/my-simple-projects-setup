@@ -17,7 +17,7 @@ const UpdateInstructor = () => {
 
     // ✅ Load user default data
     useEffect(() => {
-        const singleUser = data?.find((user) => user.email === email);
+        const singleUser = data?.find((user) => user?.email === email);
         if (singleUser) {
             reset(singleUser);
             setPreview(singleUser.photoURL);
@@ -35,10 +35,10 @@ const UpdateInstructor = () => {
 
     // ✅ Handle file upload
     const handleImageUpload = (e) => {
-        const file = e.target.files[0];
+        const file = e?.target?.files[0];
 
         if (file) {
-            const imagePreview = URL.createObjectURL(file);
+            const imagePreview = URL?.createObjectURL(file);
             setPreview(imagePreview);
 
             // form value set
@@ -50,14 +50,14 @@ const UpdateInstructor = () => {
     const onSubmit = async (data) => {
         try {
             const updateData = {
-                displayName: data.displayName,
-                phoneNumber: data.phoneNumber,
-                role: data.role,
-                photoURL: data.photoURL,
+                displayName: data?.displayName,
+                phoneNumber: data?.phoneNumber,
+                role: data?.role,
+                photoURL: data?.photoURL,
             };
 
             const res = await updateSingleUser({
-                id: data._id,
+                id: data?._id,
                 data: updateData
             }).unwrap();
 

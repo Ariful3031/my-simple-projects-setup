@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useGetAllUsersAdminQuery, useUpdateSingleUserMutation } from "../../../../redux/api/authApi";
+import Loading from "../../../pages/Loading/Loading";
 
 const UpdateUser = () => {
     const { email } = useParams();
@@ -15,10 +16,10 @@ const UpdateUser = () => {
 
     // ✅ Load user default data
     useEffect(() => {
-        const singleUser = data?.find((user) => user.email === email);
+        const singleUser = data?.find((user) => user?.email === email);
         if (singleUser) {
             reset(singleUser);
-            setPreview(singleUser.photoURL);
+            setPreview(singleUser?.photoURL);
         }
     }, [email, reset]);
 
@@ -33,7 +34,7 @@ const UpdateUser = () => {
 
     // ✅ Handle file upload
     const handleImageUpload = (e) => {
-        const file = e.target.files[0];
+        const file = e?.target?.files[0];
 
         if (file) {
             const imagePreview = URL.createObjectURL(file);
@@ -48,14 +49,14 @@ const UpdateUser = () => {
     const onSubmit = async (data) => {
         try {
             const updateData = {
-                displayName: data.displayName,
-                phoneNumber: data.phoneNumber,
-                role: data.role,
-                photoURL: data.photoURL,
+                displayName: data?.displayName,
+                phoneNumber: data?.phoneNumber,
+                role: data?.role,
+                photoURL: data?.photoURL,
             };
 
             const res = await updateSingleUser({
-                id: data._id,
+                id: data?._id,
                 data: updateData
             }).unwrap();
 
@@ -67,6 +68,10 @@ const UpdateUser = () => {
             alert("Update Failed ❌");
         }
     };
+
+    if (isLoading) {
+            return <Loading></Loading>
+        }
 
     return (
         <div className="min-h-screen flex items-center justify-center px-4 bg-gray-100 dark:bg-gray-900 transition-all duration-500">
