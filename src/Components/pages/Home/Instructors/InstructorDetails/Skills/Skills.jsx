@@ -16,17 +16,17 @@ const Skills = ({ teacher }) => {
                 Professional Skills
             </h3>
 
-            {teacher.skills?.map((skill, index) => (
+            {teacher?.skills?.map((skill, index) => (
                 <div key={index} className="mb-5">
                     <div className="flex justify-between mb-2">
-                        <span>{skill.name}</span>
-                        <span>{skill.percentage}%</span>
+                        <span>{skill?.name}</span>
+                        <span>{skill?.percentage}%</span>
                     </div>
 
                     <div className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
                         <div
                             className="h-2 bg-indigo-600 rounded-full"
-                            style={{ width: `${skill.percentage}%` }}
+                            style={{ width: `${skill?.percentage}%` }}
                         />
                     </div>
                 </div>

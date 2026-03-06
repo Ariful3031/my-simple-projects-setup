@@ -9,6 +9,7 @@ const InstrocutorList = () => {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [orderBy, setOrderBy] = useState("latest");
+
   const { data, isLoading } = useGetAllUsersAdminQuery({ role: 'teacher', searchText: searchTerm, sort: orderBy });
 
 

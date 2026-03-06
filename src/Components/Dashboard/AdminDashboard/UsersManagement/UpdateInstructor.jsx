@@ -9,20 +9,29 @@ const UpdateInstructor = () => {
     const { email } = useParams();
     console.log(email)
     const { data, isLoading } = useGetAllUsersAdminQuery({ role: "teacher" });
+    console.log(data)
     const [updateSingleUser, { isLoading: updateLoading }] = useUpdateSingleUserMutation();
 
     const { register, handleSubmit, reset, watch, setValue } = useForm();
+    const [currentUser, setCurrentUser] = useState(null);
+    // console.log(currentUser)
 
     const [preview, setPreview] = useState("");
 
     // ✅ Load user default data
     useEffect(() => {
         const singleUser = data?.find((user) => user?.email === email);
+
+        console.log(data);
+        console.log(email);
+        console.log(singleUser);
+
         if (singleUser) {
+            setCurrentUser(singleUser);
+            setPreview(singleUser?.photoURL);
             reset(singleUser);
-            setPreview(singleUser.photoURL);
         }
-    }, [email, reset]);
+    }, [email, data, reset]);
 
     // ✅ Watch photoURL for live preview (when user pastes link)
     const photoURL = watch("photoURL");
@@ -55,6 +64,7 @@ const UpdateInstructor = () => {
                 role: data?.role,
                 photoURL: data?.photoURL,
             };
+            console.log(updateData);
 
             const res = await updateSingleUser({
                 id: data?._id,
@@ -81,14 +91,14 @@ const UpdateInstructor = () => {
                 {/* Header */}
                 <div className="flex justify-between items-center mb-6">
                     <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
-                        Update User
+                        Update Teacher
                     </h2>
 
                     <Link
-                        to="/dashboard/student-list"
+                        to="/dashboard/instructor-list"
                         className="px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-sm"
                     >
-                        Users List
+            Teachers List
                     </Link>
                 </div>
 
@@ -154,8 +164,8 @@ const UpdateInstructor = () => {
                             className="w-full px-4 py-2 rounded-lg border dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-white"
                         >
                             <option value="student">Student</option>
-                            <option value="instructor">Instructor</option>
-                            <option value="admin">Admin</option>
+                            <option value="teacher">Teacher</option>
+                            {/* <option value="admin">Admin</option> */}
                         </select>
                     </div>
 

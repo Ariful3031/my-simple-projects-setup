@@ -6,13 +6,20 @@ import ProfileCard from './ProfileCard/ProfileCard';
 import Skills from './Skills/Skills';
 import InstructorCourses from './InstructorCourses/InstructorCourses';
 import InstructorCTA from './InstructorCTA/InstructorCTA';
-import { teacherData } from '../Instructors';
+// import { teacherData } from '../Instructors';
 import StudentFeedbacks from './StudentFeedbacks/StudentFeedbacks';
+import { useGetAllUsersAdminQuery } from '../../../../../redux/api/authApi';
 
 const InstructorDetails = () => {
+
+    const { data, isLoading } = useGetAllUsersAdminQuery();
+    const teacherData = data;
+    console.log(teacherData)
     const { id } = useParams();
     console.log(id)
-    const teacher = teacherData.find((t) => t.id === id);
+
+    const teacher = teacherData?.find((t) => t._id === id);
+
     if (!teacher) {
         return (
             <div className="text-center py-20 text-red-500">

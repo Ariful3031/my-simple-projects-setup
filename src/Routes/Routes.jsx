@@ -28,6 +28,7 @@ import CourseCheckoutPage from "../components/pages/CourseCheckoutPage/CourseChe
 import InstructorDetails from "../components/pages/Home/Instructors/InstructorDetails/InstructorDetails";
 import UpdateUser from "../Components/Dashboard/AdminDashboard/UsersManagement/UpdateUser";
 import UpdateInstructor from "../Components/Dashboard/AdminDashboard/UsersManagement/UpdateInstructor";
+import SingleCategoriesCourse from "../components/pages/Home/TrendingCategories/SingleCategoriesCourse";
 
 
 
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
       {
         path: "/courses",
         element: <CoursesPage></CoursesPage>
+      },
+      {
+        path: "/course_single_category/:id",
+        element: <SingleCategoriesCourse></SingleCategoriesCourse>
       },
       {
         path: "/course/:id",
