@@ -34,15 +34,16 @@ const CourseDetails = () => {
         <div className="lg:col-span-2">
 
           <h1 className="text-2xl font-bold mb-2">
-            {course.title}
+            {course?.title}
           </h1>
 
           <p className="text-red-500 text-sm mb-4">
-            🔥 {course.status}
+            🔥 {course?.admissionStatus}
           </p>
 
           {/* Top Banner */}
-          {
+          <img src={course?.thumbnail || null} alt="Banner Image" />
+          {/* {
             course?.thumbnail ? (
               <img src={course?.thumbnail} alt="Banner Image" />
             ) :
@@ -52,17 +53,15 @@ const CourseDetails = () => {
                     {course?.examTitle}
                   </h2>
 
-                  <div className="inline-block mt-2 px-3 py-1 bg-red-500 rounded-full text-xs font-semibold">
-                    {course?.batchLabel}
-                  </div>
+                
 
-                  <p className="mt-2 text-sm">{course?.subject}</p>
+          
                   <p className="text-sm font-semibold">{course?.status}</p>
 
-                  {/* Decorative Glow */}
+                 
                   <div className="absolute bottom-2 left-2 w-16 h-16 bg-yellow-400 opacity-20 rounded-full blur-xl"></div>
 
-                  {/* Discount Badge */}
+    
                   {course?.discount?.percentage > 0 && (
                     <div className="absolute right-3 bottom-3 bg-red-600 text-white text-xs px-2 py-1 rounded-full">
                       {course.discount.percentage}% ছাড়
@@ -71,7 +70,7 @@ const CourseDetails = () => {
                 </div>
               )
 
-          }
+          } */}
 
           {/* Tabs */}
           <div className="flex gap-5 mt-6 border-b pb-2 text-sm font-medium">
@@ -169,15 +168,26 @@ const CourseDetails = () => {
         {/* RIGHT SIDE CARD */}
         <div className="bg-white shadow-md rounded-xl p-5 border h-fit">
 
+
           {/* Price */}
-          <div className="mb-4">
-            <span className="text-xl font-bold text-red-600">
-              ৳ {course.pricing?.discountedPrice}
-            </span>
-            <span className="text-sm text-gray-400 line-through ml-2">
-              ৳ {course.pricing?.originalPrice}
-            </span>
-          </div>
+          {course?.discountedPrice ? (
+            <div className="mt-3 flex gap-5 mb-2">
+              <p className="text-xl font-semibold text-black dark:text-white ml-2">
+                ৳ {course?.discountedPrice}
+              </p>
+
+              <p className="font-semibold ml-2 text-gray-400 line-through">
+                ৳ {course?.regularPrice}
+              </p>
+
+            </div>
+          ) : (
+            <div className="mt-3">
+              <p className="text-xl font-semibold text-black dark:text-white ml-2">
+                ৳ {course?.regularPrice}
+              </p>
+            </div>
+          )}
 
           {/* Button */}
           <button className="w-full bg-red-700 hover:bg-red-800 text-white py-2 rounded-md font-semibold">

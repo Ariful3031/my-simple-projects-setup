@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 export const LatestFeature = () => {
     return (
         <div className='px-2'>
-            <motion.div
+            {/* <motion.div
 
                 initial={{ opacity: 0, y: 80 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -11,12 +11,12 @@ export const LatestFeature = () => {
                 viewport={{ once: true }}
                 className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center w-full"
             >
-                <h1 className='section_title'>Watch Our Latest Feature</h1>
-                <h3 className='section_subtitle'>Dive into our newest release—crafted with innovation and cinematic beauty.</h3>
-                <div className="section_title">
-                    Daynamic part section
-                </div>
-            </motion.div>
+            </motion.div> */}
+            <h1 className='section_title'>Watch Our Latest Feature</h1>
+            <h3 className='section_subtitle'>Dive into our newest release—crafted with innovation and cinematic beauty.</h3>
+            <div className="section_title">
+                Daynamic part section
+            </div>
         </div>
     )
 }

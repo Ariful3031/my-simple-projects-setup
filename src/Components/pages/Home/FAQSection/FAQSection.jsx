@@ -60,37 +60,38 @@ export default function FAQSection() {
     return (
 
         <div className='px-2'>
-            <motion.div
+            {/* <motion.div
 
                 initial={{ opacity: 0, y: 80 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 2 * 0.2 }}
                 viewport={{ once: true }}
             >
-                <h1 className='section_title'> Frequently asked questions (FAQ)</h1>
-                {/* <h3 className='section_subtitle'>#Explore latest news and articles</h3> */}
-                <div className="border-t border-gray-200 max-w-4xl mx-auto px-4 mt-10">
-                    {faqs.map((faq, index) => (
-                        <div key={index} className="border-b border-gray-200">
-                            <button
-                                onClick={() => toggleFAQ(index)}
-                                className="w-full flex justify-between items-center py-4 text-left"
-                            >
-                                <span className="dark:text-white text-black font-medium">{faq.question}</span>
-                                <span className="text-gray-500">
-                                    {openIndex === index ? "▴" : "▾"}
-                                </span>
-                            </button>
+            </motion.div> */}
+            <h1 className='section_title'> Frequently asked questions (FAQ)</h1>
+            {/* <h3 className='section_subtitle'>#Explore latest news and articles</h3> */}
+            <div className="border-t border-gray-200 max-w-4xl mx-auto px-4 mt-10">
+                {faqs.map((faq, index) => (
+                    <div key={index} className="border-b border-gray-200">
+                        <button
+                            onClick={() => toggleFAQ(index)}
+                            className="w-full flex justify-between items-center py-4 text-left"
+                        >
+                            <span className="dark:text-white text-black font-medium">{faq.question}</span>
+                            <span className="text-gray-500">
+                                {openIndex === index ? "▴" : "▾"}
+                            </span>
+                        </button>
 
-                            {openIndex === index && (
-                                <div className="pb-4 text-gray-500 dark:text-gray-500 text-sm md:text-base">
-                                    {faq.answer}
-                                </div>
-                            )}
-                        </div>
-                    ))}
-                </div>
-            </motion.div>
+                        {openIndex === index && (
+                            <div className="pb-4 text-gray-500 dark:text-gray-500 text-sm md:text-base">
+                                {faq.answer}
+                            </div>
+                        )}
+                    </div>
+                ))}
+            </div>
+
         </div>
 
 

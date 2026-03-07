@@ -8,7 +8,7 @@ const CourseCard = ({ course }) => {
     <div className=" dark:bg-slate-700  rounded-xl shadow-md overflow-hidden border dark:border-gray-500">
 
       {/* Top Banner */}
-      <Link
+      {/* <Link
         to={`/course/${course?.id}`}
       >
         {
@@ -28,10 +28,10 @@ const CourseCard = ({ course }) => {
                 <p className="mt-2 text-2xl font-bold">{course?.subject}</p>
                 <p className="text-xl font-medium mt-1">{course?.status}</p>
 
-                {/* Decorative Glow */}
+                
                 <div className="absolute bottom-2 left-2 w-16 h-16 bg-yellow-400 opacity-20 rounded-full blur-xl"></div>
 
-                {/* Discount Badge */}
+       
                 {course?.discount?.percentage > 0 && (
                   <div className="absolute right-3 bottom-3 bg-red-600 text-white text-xs px-2 py-1 rounded-full">
                     {course?.discount?.percentage}% ছাড়
@@ -41,6 +41,14 @@ const CourseCard = ({ course }) => {
             )
 
         }
+      </Link> */}
+      {/* Top Banner */}
+      <Link
+        to={`/course/${course?.id}`}
+      >
+
+        <img className="w-full h-52 object-cover" src={course?.thumbnail || null} alt="Banner Image" />
+
       </Link>
 
 
@@ -71,19 +79,19 @@ const CourseCard = ({ course }) => {
 
         <div className="grid grid-cols-2 items-center mt-2">
           {/* Price */}
-          {course?.pricing?.discountedPrice ? (
+          {course?.discountedPrice ? (
             <div className="mt-3">
               <p className="font-semibold ml-2 text-gray-400 line-through">
-                ৳ {course?.pricing?.originalPrice}
+                ৳ {course?.regularPrice}
               </p>
               <p className="text-xl font-semibold text-black dark:text-white ml-2">
-                ৳ {course?.pricing?.discountedPrice}
+                ৳ {course?.discountedPrice}
               </p>
             </div>
           ) : (
             <div className="mt-3">
               <p className="text-xl font-semibold text-black dark:text-white ml-2">
-                ৳ {course?.pricing?.originalPrice}
+                ৳ {course?.regularPrice}
               </p>
             </div>
           )}

@@ -12,10 +12,19 @@ export const courseApi = baseApi.injectEndpoints({
                 }
             },
             providesTags: [tagTypes.COURSE],
-        })
+        }),
+        createCourse: builder.mutation({
+            query: (formData) => ({
+                url: "/courses",
+                method: "POST",
+                body: formData,
+            }),
+            invalidatesTags: [tagTypes.COURSE],
+        }),
     })
 })
 
 export const {
     useGetCourseListQuery,
+    useCreateCourseMutation,
 } = courseApi;

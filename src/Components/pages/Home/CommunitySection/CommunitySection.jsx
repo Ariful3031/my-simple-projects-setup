@@ -32,16 +32,10 @@ export const CommunitySection = () => {
     ]
     return (
         <div className='px-2'>
-            <motion.div
 
-                initial={{ opacity: 0, y: 80 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 2 * 0.2 }}
-                viewport={{ once: true }}
-            >
-                <h1 className='section_title'>Our Growing Community</h1>
-                <h3 className='section_subtitle'>Join thousands of learners and experts in our thriving educational ecosystem.</h3>
-                {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 md:gap-10  ">
+            <h1 className='section_title'>Our Growing Community</h1>
+            <h3 className='section_subtitle'>Join thousands of learners and experts in our thriving educational ecosystem.</h3>
+            {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 md:gap-10  ">
                     {
                         CommunityData.map((community) => 
                             <div key={community?.id} className="border text-primary-600 border-gray-300 dark:border-black_primary-600 hover:border-primary-600 dark:hover:border-gray-300 p-5 flex flex-col items-center justify-center shadow-lg hover:shadow-2xl duration-300 rounded-xl ">
@@ -55,8 +49,8 @@ export const CommunitySection = () => {
                         )
                     }
                 </div> */}
-                <StatsSection></StatsSection>
-            </motion.div>
+            <StatsSection></StatsSection>
+
         </div>
     )
 }

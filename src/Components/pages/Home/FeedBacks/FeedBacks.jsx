@@ -40,7 +40,7 @@ export const FeedBacks = () => {
     ]
     return (
         <div className='px-2'>
-            <motion.div
+            {/* <motion.div
 
                 initial={{ opacity: 0, y: 80 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -48,17 +48,17 @@ export const FeedBacks = () => {
                 viewport={{ once: true }}
                 className=""
             >
-                <h1 className='section_title'>Our Students FeedBacks</h1>
-                <h3 className='section_subtitle'>Real voices. Real experiences. Discover how our courses have empowered learners to grow their skills  their goals.</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                    {
-                        demofeedBacks.map((singleFeedback, index) => (
-                            
-                            <FeedbackCard key={index} singleFeedback={singleFeedback} ></FeedbackCard>
-                        ))
-                    }
-                </div>
-            </motion.div>
+            </motion.div> */}
+            <h1 className='section_title'>Our Students FeedBacks</h1>
+            <h3 className='section_subtitle'>Real voices. Real experiences. Discover how our courses have empowered learners to grow their skills  their goals.</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                {
+                    demofeedBacks.map((singleFeedback, index) => (
+
+                        <FeedbackCard key={index} singleFeedback={singleFeedback} ></FeedbackCard>
+                    ))
+                }
+            </div>
         </div>
     )
 }

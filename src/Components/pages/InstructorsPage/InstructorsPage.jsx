@@ -13,7 +13,7 @@ const InstructorsPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryTerm, setCategoryTerm] = useState("")
 
-  const { data, isLoading } = useGetAllUsersAdminQuery({ searchText: searchTerm, categoryRole: categoryTerm });
+  const { data, isLoading } = useGetAllUsersAdminQuery({ role: 'teacher', searchText: searchTerm, categoryRole: categoryTerm });
   const teacherData = data;
 
 
