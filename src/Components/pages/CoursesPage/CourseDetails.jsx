@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useGetCourseListQuery } from "../../../redux/api/couresApi";
 import Loading from "../Loading/Loading";
 
@@ -99,26 +99,32 @@ const CourseDetails = () => {
               </div>
             )}
 
+
             {/* Instructor */}
-            {activeTab === "instructor" && course.instructor ? (
-              <div className="flex items-start gap-4">
-                <img
-                  src={course.instructor.image}
-                  alt={course.instructor.name}
-                  className="w-20 h-20 rounded-full object-cover"
-                />
-                <div>
-                  <h4 className="font-semibold text-base">
-                    {course.instructor.name}
-                  </h4>
-                  <p className="text-gray-600 mt-1">
-                    {course.instructor.bio}
-                  </p>
+            {activeTab === "instructor" && course?.instructors?.length ? (
+              course.instructors.map((ins, index) => (
+                <div key={index} className="flex items-start gap-4">
+                  <Link to={`/instructor/details/${ins?._id}`}>
+                    <img
+                      src={ins?.photoURL}   // ins.thumbnail ব্যবহার করুন
+                      alt={``}
+                      className="w-20 h-20 rounded-full object-cover"
+                    />
+                  </Link>
+
+                  <div>
+                    <h4 className="font-semibold text-base">
+                      {ins?.displayName}
+                    </h4>
+                    <p className="text-gray-600 mt-1">
+                      {ins?.jobTitle || "No bio available"}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ) : activeTab === "instructor" && (
+              ))
+            ) : activeTab === "instructor" ? (
               <p>No instructor information available.</p>
-            )}
+            ) : null}
 
             {/* Routine */}
             {activeTab === "routine" && course.routine?.length ? (

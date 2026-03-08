@@ -9,18 +9,18 @@ export const TrendingCategories = () => {
     const { data, isLoading, error } = useGetCourseListQuery();
 
 
-    const uniqueCategoriesTitle = data
-        ? [...new Set(data?.map((item) => item?.category?.category_title))]
-        : [];
+    const uniqueCategoriesMap = new Map();
 
+    data?.forEach((item) => {
+        const title = item?.category?.category_title;
+        if (title && !uniqueCategoriesMap.has(title)) {
+            uniqueCategoriesMap.set(title, item);
+        }
+    });
 
+    const matchedCategories = Array.from(uniqueCategoriesMap.values());
 
-    const matchedCategories = data?.filter((demoCat) =>
-        uniqueCategoriesTitle?.includes(demoCat?.category?.category_title)
-    );
-
-
-    // console.log(matchedCategories);
+    console.log(matchedCategories);
 
 
 

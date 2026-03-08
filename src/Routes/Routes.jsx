@@ -96,7 +96,7 @@ export const router = createBrowserRouter([
         path: "instructor/details/:id",
         element: <InstructorDetails></InstructorDetails>
       },
-      
+
 
     ]
   },
@@ -122,7 +122,7 @@ export const router = createBrowserRouter([
         path: 'update-instructor/:email',
         element: <UpdateInstructor></UpdateInstructor>
       },
-      
+
       {
         path: 'student-list',
         element: <StudentList></StudentList>
@@ -135,14 +135,14 @@ export const router = createBrowserRouter([
         path: 'update-user/:email',
         element: <UpdateUser></UpdateUser>
       },
-      
-      
+
+      // course management  section
       {
         path: 'create-course',
         element: <CreateCourse></CreateCourse>
       },
       {
-        path: 'update-course',
+        path: 'update-course/:id',
         element: <UpdateCourse></UpdateCourse>
       },
       {
