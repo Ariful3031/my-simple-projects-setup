@@ -5,24 +5,14 @@ import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { useCreateCourseMutation, useGetCourseListQuery } from "../../../../redux/api/couresApi";
 import { useGetAllUsersAdminQuery } from "../../../../redux/api/authApi";
+import { Link } from "react-router";
+import { useGetAllCategoriesListQuery } from "../../../../redux/api/categoriesApi";
 
 const CreateCourse = () => {
 
   const [createCourse, { isLoading, error }] = useCreateCourseMutation();
   const { data: teacherData, isLoading: teacherLoading } = useGetAllUsersAdminQuery({ role: 'teacher' });
-  const { data: categoryData, isLoading: categoryLoading } = useGetCourseListQuery();
-
-
-  const uniqueCategoriesMap = new Map();
-
-  categoryData?.forEach((item) => {
-    const title = item?.category?.category_title;
-    if (title && !uniqueCategoriesMap.has(title)) {
-      uniqueCategoriesMap.set(title, item);
-    }
-  });
-
-  const matchedCategories = Array.from(uniqueCategoriesMap.values());
+  const { data: categoryData, isLoading: categoryLoading } = useGetAllCategoriesListQuery();
 
 
 
@@ -120,12 +110,23 @@ const CreateCourse = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-4 md:p-6">
-      <div className="max-w-5xl mx-auto bg-white dark:bg-gray-800 p-6 md:p-8 rounded-xl shadow">
+    <div className=" bg-gray-100 dark:bg-gray-900 p-4 md:p-8 text-gray-800 dark:text-white">
+      <div className="bg-white dark:bg-gray-800 p-6 shadow-xl rounded-md">
+        {/* Header */}
 
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-          Create New Course
-        </h2>
+        <div className="shadow p-4 rounded-lg mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+          <h2 className="text-xl font-semibold text-primary-500">
+            Create Course
+          </h2>
+          <Link
+            to={"/dashboard/course-list"}
+            className="text-sm text-gray-500 dark:text-gray-400"
+          >
+            <span className="font-bold">Dashboard</span> / Course List
+          </Link>
+        </div>
+
+
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 
@@ -295,24 +296,24 @@ const CreateCourse = () => {
               onChange={(e) => {
                 const selectedTitle = e.target.value;
 
-                const found = matchedCategories?.find(
-                  (cat) => cat?.category?.category_title === selectedTitle
+                const found = categoryData?.find(
+                  (cat) => cat?.category_title === selectedTitle
                 );
 
-                if (found) {
-                  setValue(
-                    "category.category_description",
-                    found?.category?.category_description
-                  );
-                }
+                // if (found) {
+                //   setValue(
+                //     "category.category_description",
+                //     found?.category?.category_description
+                //   );
+                // }
               }}
             >
-              {matchedCategories?.map((category, index) => (
+              {categoryData?.map((category, index) => (
                 <option
                   key={index}
-                  value={category?.category?.category_title}
+                  value={category?.category_title}
                 >
-                  {category?.category?.category_title}
+                  {category?.category_title}
                 </option>
               ))}
             </select>

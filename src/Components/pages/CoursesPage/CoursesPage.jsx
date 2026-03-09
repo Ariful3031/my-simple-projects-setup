@@ -3,23 +3,15 @@ import { useGetCourseListQuery } from '../../../redux/api/couresApi'
 import CourseCard from './CourseCard';
 import Loading from '../Loading/Loading';
 import { FaSearch } from 'react-icons/fa';
+import { useGetAllCategoriesListQuery } from '../../../redux/api/categoriesApi';
 
 
 const CoursesPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryTerm, setCategoryTerm] = useState("");
-  console.log(categoryTerm)
-  const { data, isLoading, error } = useGetCourseListQuery({ searchText: searchTerm, category: categoryTerm });
-  const { data: categorysData } = useGetCourseListQuery();
-  // console.log(data)
-
+  const { data, isLoading, error } = useGetCourseListQuery({ searchText: searchTerm, category: categoryTerm, status: "publish" });
+  const { data: categorysData } = useGetAllCategoriesListQuery();
   const allCoursesData = data;
-
-
-
-  const uniqueCategoriesTitle = categorysData
-    ? [...new Set(categorysData?.map((item) => item?.category?.category_title))]
-    : [];
 
 
 
@@ -41,8 +33,6 @@ const CoursesPage = () => {
           {/* Search */}
           <div className="sm:col-span-2 lg:col-span-3">
             <label className='text-xl font-bold'>Course Title:</label>
-
-
 
             <div className="relative w-full">
               <input
@@ -69,8 +59,8 @@ const CoursesPage = () => {
             >
               <option value="">All</option>
               {
-                uniqueCategoriesTitle?.map((category,index) => (
-                  <option key={index} value={category}>{category} </option>
+                categorysData?.map((category, index) => (
+                  <option key={index} value={category?.category_title}>{category?.category_title} </option>
                 ))
               }
             </select>

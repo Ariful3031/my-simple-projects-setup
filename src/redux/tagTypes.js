@@ -1,10 +1,11 @@
 // tagList.js
 export const tagTypes = {
- 
+
   COURSE: "course",
   CONTACT: "contact",
   USER: "user",
- 
+  CATEGORY: "category"
+
 };
 
 // if you need a list of all tag types

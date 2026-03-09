@@ -21,10 +21,19 @@ export const courseApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: [tagTypes.COURSE],
         }),
+        updateSingleCourse: builder.mutation({
+            query: ({ id, formData }) => ({
+                url: `/courses/${id}`,
+                method: "PATCH",
+                body: formData,
+            }),
+            invalidatesTags: [tagTypes.COURSE],
+        }),
     })
 })
 
 export const {
     useGetCourseListQuery,
     useCreateCourseMutation,
+    useUpdateSingleCourseMutation,
 } = courseApi;

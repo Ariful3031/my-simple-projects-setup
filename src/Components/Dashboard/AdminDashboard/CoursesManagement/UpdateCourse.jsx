@@ -1,23 +1,30 @@
 
 
-// const UpdateCourse = () => {
-// const id = useParams()
-// console.log(id?.id)
+
 
 
 import { useForm, useFieldArray } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
-import { useCreateCourseMutation, useGetCourseListQuery } from "../../../../redux/api/couresApi";
+import { useGetCourseListQuery, useUpdateSingleCourseMutation } from "../../../../redux/api/couresApi";
 import { useGetAllUsersAdminQuery } from "../../../../redux/api/authApi";
+import { Link, useParams } from "react-router";
+import { useGetAllCategoriesListQuery } from "../../../../redux/api/categoriesApi";
 
-const UpdateCourse  = () => {
+const UpdateCourse = () => {
+  const id = useParams()
+  const courseId = id?.id;
 
-  // const [createCourse, { isLoading, error }] = useCreateCourseMutation();
+
+  const [updateSingleCourse, { isLoading: updateLoading }] = useUpdateSingleCourseMutation()
   const { data: teacherData, isLoading: teacherLoading } = useGetAllUsersAdminQuery({ role: 'teacher' });
-  const { data: categoryData, isLoading: categoryLoading } = useGetCourseListQuery();
+  const { data: categoryData, isLoading: categoryLoading } = useGetAllCategoriesListQuery();
+  const { data, isLoading } = useGetCourseListQuery({ id: courseId });
+  const singleCourse = data?.[0];
 
+  console.log(data)
+  console.log(singleCourse)
 
   const uniqueCategoriesMap = new Map();
 
@@ -40,6 +47,38 @@ const UpdateCourse  = () => {
       reviews: [],
     },
   });
+
+  // ⭐ ADD (API data আসলে form fill করার জন্য)
+  useEffect(() => {
+    if (data && data.length > 0) {
+      const course = data[0];
+
+      reset({
+        title: course?.title,
+        duration: course?.duration,
+        totalLecture: course?.totalLecture,
+        language: course?.language,
+        overview: course?.overview,
+        contact: course?.contact,
+        admissionStatus: course?.admissionStatus,
+        status: course?.status,
+        regularPrice: course?.regularPrice,
+        discountedPrice: course?.discountedPrice,
+        includes: course?.includes || [],
+        category: course?.category || {},
+        routine: course?.routine || [],
+        reviews: course?.reviews || [],
+      });
+
+      // Explicitly set multiple select value
+      setValue(
+        "instructorIds",
+        course?.instructors?.map((i) => i?._id) || []
+      );
+
+      setPreview(course?.thumbnail);
+    }
+  }, [data, reset, setValue]);
 
   const { fields, append, remove } = useFieldArray({ control, name: "includes", });
 
@@ -100,31 +139,31 @@ const UpdateCourse  = () => {
           reviews: data?.reviews,
 
           rating: {
-            average: 0,
-            totalReviews: 0,
+            average: singleCourse?.rating?.average || 0,
+            totalReviews: singleCourse?.rating?.totalReviews || 0,
           },
 
-          createdAt: new Date().toISOString(),
-          enrolled: "0",
+          updateAt: new Date().toISOString(),
+          enrolled: singleCourse?.enrolled || "0",
         })
       );
 
-      // const res = await createCourse(formData).unwrap();
+      const res = await updateSingleCourse({ id: courseId, formData }).unwrap();
 
 
-      Swal.fire({
-        icon: "success",
-        title: "Course Created",
-        text: res?.message || "Success",
-      });
+      // Swal.fire({
+      //   icon: "success",
+      //   title: "Course Created",
+      //   text: res?.message || "Success",
+      // });
 
-      // if (res.message === "success") {
-      //   Swal.fire({
-      //     icon: "success",
-      //     title: "Course Created",
-      //     text: res?.message || "Success",
-      //   });
-      // }
+      if (res.message === "success") {
+        Swal.fire({
+          icon: "success",
+          title: "Course Update",
+          text: res?.message || "Success",
+        });
+      }
 
     } catch (err) {
       toast.error("Something went wrong!");
@@ -132,13 +171,23 @@ const UpdateCourse  = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-4 md:p-6">
-      <div className="max-w-5xl mx-auto bg-white dark:bg-gray-800 p-6 md:p-8 rounded-xl shadow">
+    <div className=" bg-gray-100 dark:bg-gray-900 p-4 md:p-8 text-gray-800 dark:text-white">
+      <div className="bg-white dark:bg-gray-800 p-6 shadow-xl rounded-md">
+        {/* Header */}
 
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-          Update Course
-        </h2>
+        <div className="shadow p-4 rounded-lg mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+          <h2 className="text-xl font-semibold text-primary-500">
+            Update Course
+          </h2>
+          <Link
+            to={"/dashboard/course-list"}
+            className="text-sm text-gray-500 dark:text-gray-400"
+          >
+            <span className="font-bold">Dashboard</span> / Course List
+          </Link>
+        </div>
 
+        {/* update form  */}
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 
           {/* TITLE */}
@@ -158,17 +207,23 @@ const UpdateCourse  = () => {
             <input
               type="file"
               accept="image/*"
-              {...register("thumbnail", { required: "Thumbnail required" })}
+              {...register("thumbnail")}
               onChange={handleImagePreview}
               className="w-full mt-2 p-2 border rounded-lg"
             />
 
             {preview && (
+
               <img
                 src={preview}
                 alt="preview"
                 className="mt-3 w-40 h-24 object-cover rounded-lg"
               />
+              // <img
+              //   src={preview}
+              //   alt="preview"
+              //   className="mt-3 w-40 h-24 object-cover rounded-lg"
+              // />
             )}
           </div>
 
@@ -487,7 +542,9 @@ const UpdateCourse  = () => {
             type="submit"
             className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg font-semibold"
           >
-            Create Course
+            {
+              updateLoading ? "Updating Course" : "Update Course"
+            }
           </button>
 
         </form>

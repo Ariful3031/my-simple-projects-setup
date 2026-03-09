@@ -29,6 +29,9 @@ import InstructorDetails from "../components/pages/Home/Instructors/InstructorDe
 import UpdateUser from "../Components/Dashboard/AdminDashboard/UsersManagement/UpdateUser";
 import UpdateInstructor from "../Components/Dashboard/AdminDashboard/UsersManagement/UpdateInstructor";
 import SingleCategoriesCourse from "../components/pages/Home/TrendingCategories/SingleCategoriesCourse";
+import CreateCategory from "../components/Dashboard/AdminDashboard/CoursesManagement/CreateCategory";
+import CategoriesList from "../components/Dashboard/AdminDashboard/CoursesManagement/CategoriesList";
+import UpdateCategory from "../components/Dashboard/AdminDashboard/CoursesManagement/UpdateCategory";
 
 
 
@@ -148,6 +151,19 @@ export const router = createBrowserRouter([
       {
         path: 'course-list',
         element: <CoursesList></CoursesList>
+      },
+      // category section 
+      {
+        path: 'create-category',
+        element: <CreateCategory></CreateCategory>
+      },
+      {
+        path: 'update-category/:id',
+        element: <UpdateCategory></UpdateCategory>
+      },
+      {
+        path: 'categories-list',
+        element: <CategoriesList></CategoriesList>
       },
     ]
   },

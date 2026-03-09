@@ -183,7 +183,7 @@ const AdminDashboard = () => {
                                     )}
                                 </NavLink>
                             </li>
-
+                            {/* Manage course section  */}
                             <DropdownItem
                                 icon={<FaUsersGear />}
                                 label="Manage Course"
@@ -191,8 +191,11 @@ const AdminDashboard = () => {
                                 subLinks={[
                                     { label: "Course List", to: "course-list" },
                                     { label: "Create Course", to: "create-course" },
+                                    { label: "Categories List", to: "categories-list" },
+                                    { label: "Create Category", to: "create-category" },
                                 ]}
                             />
+                          
 
 
                             {sidebarOpen && (

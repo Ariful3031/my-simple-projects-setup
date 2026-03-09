@@ -4,6 +4,7 @@ import { useGetCourseListQuery } from "../../../redux/api/couresApi";
 import Loading from "../Loading/Loading";
 
 
+
 const CourseDetails = () => {
 
   const { data, isLoading, error } = useGetCourseListQuery();

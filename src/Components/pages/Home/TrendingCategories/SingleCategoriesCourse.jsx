@@ -6,12 +6,12 @@ import Loading from '../../Loading/Loading';
 
 const SingleCategoriesCourse = () => {
     const params = useParams();
-    const { data, isLoading, error } = useGetCourseListQuery();
+    const { data, isLoading, error } = useGetCourseListQuery({ status: "publish" });
     const categoryName = params?.id;
-    // console.log(categoryName)
+
     const filterCategory = data?.filter((course) =>
         course?.category?.category_title === categoryName);
-    // console.log(filterCategory)
+
 
     if (isLoading) return <Loading></Loading>;
     if (error) return <p>Error loading courses</p>;

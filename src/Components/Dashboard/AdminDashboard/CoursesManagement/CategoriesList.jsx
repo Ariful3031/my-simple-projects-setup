@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { FaEdit, FaUserEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useGetAllUsersAdminQuery } from "../../../../redux/api/authApi";
 import Loading from "../../../pages/Loading/Loading";
-import { useGetCourseListQuery } from "../../../../redux/api/couresApi";
+
+import { useGetAllCategoriesListQuery } from "../../../../redux/api/categoriesApi";
 
 
-const CoursesList = () => {
+const CategoriesList = () => {
 
     const [searchTerm, setSearchTerm] = useState("");
     const [orderBy, setOrderBy] = useState("latest");
 
-    const { data, isLoading, error } = useGetCourseListQuery();
+    const { data, isLoading, error } = useGetAllCategoriesListQuery();
     console.log(data)
 
 
@@ -28,13 +28,13 @@ const CoursesList = () => {
 
                     <div className="shadow p-4 rounded-lg mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
                         <h2 className="text-xl font-semibold text-primary-500">
-                            Course List
+                            Categories List
                         </h2>
                         <Link
                             to={"/dashboard"}
                             className="text-sm text-gray-500 dark:text-gray-400"
                         >
-                            <span className="font-bold">Dashboard</span> / Course List
+                            <span className="font-bold">Dashboard</span> / Categories List
                         </Link>
                     </div>
 
@@ -77,40 +77,23 @@ const CoursesList = () => {
                             <thead className="sticky top-0 z-10">
                                 <tr className="bg-gray-100 dark:bg-gray-700 text-left text-sm font-semibold text-gray-700 dark:text-white">
                                     <th className="py-3 px-4">ID</th>
-                                    <th className="py-3 px-4">Course Name</th>
-                                    <th className="py-3 px-4">Regular Price</th>
-                                    <th className="py-3 px-4">Discount Price</th>
-                                    <th className="py-3 px-4">Create At</th>
-                                    {/* <th className="py-3 px-4">Course Type</th> */}
-                                    <th className="py-3 px-4">Status</th>
+                                    <th className="py-3 px-4">Category Title</th>
+                                    <th className="py-3 px-4">Category Description</th>
+
                                     <th className="py-3 px-4">Action</th>
                                 </tr>
                             </thead>
 
                             <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                                {data?.map((course, idx) => (
+                                {data?.map((category, index) => (
                                     <tr
-                                        key={course?._id || course?.id}
+                                        key={index}
                                         className="bg-white dark:bg-gray-800 hover:shadow-md transition-all rounded-md"
                                     >
-                                        <td className="py-3 px-4">{course?.id}</td>
-                                        <td className="py-3 px-4">{course?.title}</td>
-                                        <td className="py-3 px-4">{course?.regularPrice || "N/A"}</td>
-                                        <td className="py-3 px-4">{course?.discountedPrice || "N/A"}</td>
-                                        <td className="py-3 px-4">
-                                            {new Date(course?.createdAt).toLocaleDateString("en-GB")}
-                                        </td>
-                                        {/* <td className="py-3 px-4">{course?.type}</td> */}
-                                        <td className="py-3 px-4">
-                                            <span
-                                                className={`px-2 py-1 rounded-full text-xs font-medium ${course?.status === "publish"
-                                                    ? "bg-green-100 text-green-800 dark:bg-green-700 dark:text-white"
-                                                    : "bg-yellow-100 text-yellow-800 dark:bg-yellow-700 dark:text-white"
-                                                    }`}
-                                            >
-                                                {course?.status}
-                                            </span>
-                                        </td>
+                                        <td className="py-3 px-4">{category?.categoryId}</td>
+                                        <td className="py-3 px-4">{category?.category_title}</td>
+                                        <td className="py-3 px-4">{category?.category_description}</td>
+
                                         <td className="py-3 px-4 flex  gap-2">
                                             <button
                                                 onClick={() => {
@@ -121,7 +104,7 @@ const CoursesList = () => {
                                             </button>
                                             <Link
                                                 className="text-blue-600 dark:text-blue-400 hover:scale-110 transition"
-                                                to={`/dashboard/update-course/${course?.id}`}
+                                                to={`/dashboard/update-category/${category?.categoryId}`}
                                             >
                                                 <FaEdit className="text-base" size={20} />
                                             </Link>
@@ -140,4 +123,4 @@ const CoursesList = () => {
     );
 };
 
-export default CoursesList;
+export default CategoriesList;
