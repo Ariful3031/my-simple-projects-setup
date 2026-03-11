@@ -8,22 +8,22 @@ export const categoriesApi = baseApi.injectEndpoints({
                 return {
                     url: `/categories`,
                     method: "GET",
-                    params: params
+                    params: params || {}
                 }
             },
             providesTags: [tagTypes.CATEGORY],
         }),
-        createCategories: builder.mutation({
+        createCategory: builder.mutation({
             query: (formData) => ({
-                url: "/categories",
+                url: "/category",
                 method: "POST",
                 body: formData,
             }),
             invalidatesTags: [tagTypes.CATEGORY],
         }),
-        updateSingleCategorie: builder.mutation({
+        updateSingleCategory: builder.mutation({
             query: ({ id, formData }) => ({
-                url: `/categories/${id}`,
+                url: `/category/${id}`,
                 method: "PATCH",
                 body: formData,
             }),
@@ -34,6 +34,6 @@ export const categoriesApi = baseApi.injectEndpoints({
 
 export const {
     useGetAllCategoriesListQuery,
-    useCreateCategoriesMutation,
-    useUpdateSingleCategorieMutation,
+    useCreateCategoryMutation,
+    useUpdateSingleCategoryMutation,
 } = categoriesApi;
