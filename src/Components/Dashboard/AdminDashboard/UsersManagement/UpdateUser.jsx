@@ -11,17 +11,19 @@ const UpdateUser = () => {
     const [updateSingleUser, { isLoading: updateLoading }] = useUpdateSingleUserMutation();
 
     const { register, handleSubmit, reset, watch, setValue } = useForm();
-
+    const [imageFile, setImageFile] = useState(null);
     const [preview, setPreview] = useState("");
 
     // ✅ Load user default data
     useEffect(() => {
         const singleUser = data?.find((user) => user?.email === email);
+
         if (singleUser) {
             reset(singleUser);
             setPreview(singleUser?.photoURL);
         }
-    }, [email, reset]);
+
+    }, [email, data, reset]);
 
     // ✅ Watch photoURL for live preview (when user pastes link)
     const photoURL = watch("photoURL");
@@ -34,45 +36,53 @@ const UpdateUser = () => {
 
     // ✅ Handle file upload
     const handleImageUpload = (e) => {
-        const file = e?.target?.files[0];
+        const file = e.target.files[0];
 
         if (file) {
+            setImageFile(file);
+
             const imagePreview = URL.createObjectURL(file);
             setPreview(imagePreview);
-
-            // form value set
-            setValue("photoURL", imagePreview);
         }
     };
 
     // ✅ Submit
     const onSubmit = async (data) => {
         try {
+
+            const formData = new FormData();
+
+            if (imageFile) {
+                formData.append("photo", imageFile);
+            }
+
             const updateData = {
                 displayName: data?.displayName,
                 phoneNumber: data?.phoneNumber,
                 role: data?.role,
-                photoURL: data?.photoURL,
+                photoURL: data?.photoURL
             };
-            console.log(data?._id)
+
+            formData.append("data", JSON.stringify(updateData));
 
             const res = await updateSingleUser({
                 id: data?._id,
-                data: updateData
+                data: formData
             }).unwrap();
 
-            console.log("Updated Response:", res);
+            console.log(res);
+
             alert("User Updated Successfully ✅");
 
         } catch (error) {
-            console.error("Update Failed:", error);
+            console.error(error);
             alert("Update Failed ❌");
         }
     };
 
     if (isLoading) {
-            return <Loading></Loading>
-        }
+        return <Loading></Loading>
+    }
 
     return (
         <div className="min-h-screen flex items-center justify-center px-4 bg-gray-100 dark:bg-gray-900 transition-all duration-500">

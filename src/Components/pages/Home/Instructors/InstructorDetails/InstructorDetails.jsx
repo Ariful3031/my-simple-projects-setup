@@ -1,24 +1,25 @@
-
-import React from 'react'
-import { useParams } from 'react-router'
+import React from 'react';
+import { useParams } from 'react-router';
 import HeroInstructor from './HeroInstructor/HeroInstructor';
 import ProfileCard from './ProfileCard/ProfileCard';
 import Skills from './Skills/Skills';
 import InstructorCourses from './InstructorCourses/InstructorCourses';
 import InstructorCTA from './InstructorCTA/InstructorCTA';
-// import { teacherData } from '../Instructors';
 import StudentFeedbacks from './StudentFeedbacks/StudentFeedbacks';
 import { useGetAllUsersAdminQuery } from '../../../../../redux/api/authApi';
+import InstructorDetailsSkeletonPage from '../../../LoadingPage/InstructorDetailsSkeletonPage';
 
 const InstructorDetails = () => {
-
     const { data, isLoading } = useGetAllUsersAdminQuery();
-    const teacherData = data;
-    console.log(teacherData)
     const { id } = useParams();
-    console.log(id)
 
-    const teacher = teacherData?.find((t) => t._id === id);
+    // Show skeleton while loading
+    if (isLoading) {
+        return <InstructorDetailsSkeletonPage />;
+    }
+
+    // Once loaded, find the teacher
+    const teacher = data?.find((t) => t._id === id);
 
     if (!teacher) {
         return (
@@ -27,21 +28,19 @@ const InstructorDetails = () => {
             </div>
         );
     }
+
     return (
-        <div className="bg-white dark:bg-gray-900 text-black dark:text-white transition-colors duration-300">
-            <HeroInstructor teacher={teacher}></HeroInstructor>
+        <div className="bg-white dark:bg-gray-900 text-black dark:text-white transition-colors duration-300 p-5">
+            <HeroInstructor teacher={teacher} />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <ProfileCard teacher={teacher}></ProfileCard>
-                <Skills teacher={teacher}></Skills>
+                <ProfileCard teacher={teacher} />
+                <Skills teacher={teacher} />
             </div>
-            <InstructorCourses teacher={teacher}></InstructorCourses>
-            <StudentFeedbacks teacher={teacher}></StudentFeedbacks>
-
-            <InstructorCTA teacher={teacher}></InstructorCTA>
-
-
+            <InstructorCourses teacher={teacher} />
+            <StudentFeedbacks teacher={teacher} />
+            <InstructorCTA teacher={teacher} />
         </div>
-    )
-}
+    );
+};
 
-export default InstructorDetails
+export default InstructorDetails;
