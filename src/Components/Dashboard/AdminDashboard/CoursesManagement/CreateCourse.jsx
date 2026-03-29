@@ -48,6 +48,8 @@ const CreateCourse = () => {
   });
 
   const [preview, setPreview] = useState(null);
+  const inputStyle =
+    "w-full mt-2 p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition";
 
   const handleImagePreview = (e) => {
     const file = e.target.files[0];
@@ -94,7 +96,7 @@ const CreateCourse = () => {
       );
 
       const res = await createCourse(formData).unwrap();
-      console.log
+   
 
       if (res.message === "success") {
         Swal.fire({
@@ -102,6 +104,7 @@ const CreateCourse = () => {
           title: "Course Created",
           text: res?.message || "Success",
         });
+        reset()
       }
 
     } catch (err) {
@@ -110,8 +113,8 @@ const CreateCourse = () => {
   };
 
   return (
-    <div className=" bg-gray-100 dark:bg-gray-900 p-4 md:p-8 text-gray-800 dark:text-white">
-      <div className="bg-white dark:bg-gray-800 p-6 shadow-xl rounded-md">
+    <div className=" min-h-screen bg-gray-100 dark:bg-gray-900 p-4 md:p-8 transition-colors duration-300">
+      <div className="max-w-6xl mx-auto bg-white dark:bg-gray-800 p-6 md:p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700">
         {/* Header */}
 
         <div className="shadow p-4 rounded-lg mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
@@ -132,31 +135,41 @@ const CreateCourse = () => {
 
           {/* TITLE */}
           <div>
-            <label className="font-semibold dark:text-white">Course Title</label>
+            <label className="font-semibold dark:text-white">Course Title <span className="text-red-500">*</span></label>
             <input
-              type="text"
+              type="text" placeholder="type title"
               {...register("title", { required: "Title required" })}
-              className="w-full mt-2 p-3 rounded-lg border"
+              className={`${inputStyle} ${errors.title ? "!border-red-500" : ""}`}
             />
+            {errors?.title && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.title.message}
+              </p>
+            )}
           </div>
 
           {/* THUMBNAIL */}
           <div>
-            <label className="font-semibold dark:text-white">Course Thumbnail</label>
+            <label className="font-semibold dark:text-white">Course Thumbnail <span className="text-red-500">*</span></label>
 
             <input
               type="file"
               accept="image/*"
               {...register("thumbnail", { required: "Thumbnail required" })}
               onChange={handleImagePreview}
-              className="w-full mt-2 p-2 border rounded-lg"
+              className={`${inputStyle} ${errors.thumbnail ? "!border-red-500" : ""}`}
             />
+            {errors?.thumbnail && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.thumbnail.message}
+              </p>
+            )}
 
             {preview && (
               <img
                 src={preview}
                 alt="preview"
-                className="mt-3 w-40 h-24 object-cover rounded-lg"
+                className="mt-3 w-40 rounded-lg border dark:border-gray-600"
               />
             )}
           </div>
@@ -169,9 +182,9 @@ const CreateCourse = () => {
                 Regular Price
               </label>
               <input
-                type="number"
+                type="number" placeholder="2499"
                 {...register("regularPrice")}
-                className="w-full mt-2 p-3 border rounded-lg"
+                className={inputStyle}
               />
             </div>
 
@@ -180,9 +193,9 @@ const CreateCourse = () => {
                 Discount Price
               </label>
               <input
-                type="number"
+                type="number" placeholder="1999"
                 {...register("discountedPrice")}
-                className="w-full mt-2 p-3 border rounded-lg"
+                className={inputStyle}
               />
             </div>
 
@@ -192,12 +205,17 @@ const CreateCourse = () => {
           <div className="grid md:grid-cols-2 gap-4">
 
             <div>
-              <label className="font-semibold dark:text-white">Duration</label>
+              <label className="font-semibold dark:text-white">Duration <span className="text-red-500">*</span></label>
               <input
-                type="text"
-                {...register("duration")}
-                className="w-full mt-2 p-3 border rounded-lg"
+                type="text" placeholder="6 month"
+                {...register("duration", { required: "Duration is required" })}
+                className={`${inputStyle} ${errors.duration ? "!border-red-500" : ""}`}
               />
+              {errors?.duration && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.duration.message}
+                </p>
+              )}
             </div>
 
             <div>
@@ -205,9 +223,9 @@ const CreateCourse = () => {
                 Total Lecture
               </label>
               <input
-                type="number"
+                type="number" placeholder="60"
                 {...register("totalLecture")}
-                className="w-full mt-2 p-3 border rounded-lg"
+                className={inputStyle}
               />
             </div>
 
@@ -215,14 +233,19 @@ const CreateCourse = () => {
 
           {/* LANGUAGE */}
           <div>
-            <label className="font-semibold dark:text-white">Language</label>
+            <label className="font-semibold dark:text-white">Language <span className="text-red-500">*</span></label>
             <select
-              {...register("language")}
-              className="w-full mt-2 p-3 border rounded-lg"
+              {...register("language", { required: "Language is required" })}
+              className={`${inputStyle} ${errors.language ? "!border-red-500" : ""}`}
             >
               <option value="বাংলা">বাংলা</option>
               <option value="English">English</option>
             </select>
+            {errors?.language && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.language.message}
+              </p>
+            )}
           </div>
 
           {/* INCLUDES */}
@@ -236,7 +259,7 @@ const CreateCourse = () => {
 
                 <input
                   {...register(`includes.${index}`)}
-                  className="flex-1 p-3 border rounded-lg"
+                  className={inputStyle}
                 />
 
                 <button
@@ -269,7 +292,7 @@ const CreateCourse = () => {
             <select
               multiple
               {...register("instructorIds")}
-              className="w-full mt-2 p-3 border rounded-lg"
+              className={inputStyle}
             >
               {teacherData?.map((teacher, index) => (
                 <option key={index} value={teacher?._id}>
@@ -286,37 +309,29 @@ const CreateCourse = () => {
           {/* ➕ CATEGORY */}
           <div>
             <label className="font-semibold dark:text-white">
-              Select Category Title
+              Select Category Title <span className="text-red-500">*</span>
             </label>
 
             <select
-              {...register("category.category_title")}
-              className="w-full mt-2 p-3 border rounded-lg"
-
-              onChange={(e) => {
-                const selectedTitle = e.target.value;
-
-                const found = categoryData?.find(
-                  (cat) => cat?.category_title === selectedTitle
-                );
-
-                // if (found) {
-                //   setValue(
-                //     "category.category_description",
-                //     found?.category?.category_description
-                //   );
-                // }
-              }}
+              {...register("category.category_title", {
+                required: "Category title required",
+              })}
+              className={`${inputStyle} ${errors?.category?.category_title ? "!border-red-500" : ""
+                }`}
             >
+              <option value="">Select Category</option>
+
               {categoryData?.map((category, index) => (
-                <option
-                  key={index}
-                  value={category?.category_title}
-                >
+                <option key={index} value={category?.category_title}>
                   {category?.category_title}
                 </option>
               ))}
             </select>
+            {errors?.category?.category_title && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors?.category?.category_title.message}
+              </p>
+            )}
           </div>
 
           {/* ➕ ROUTINE */}
@@ -332,19 +347,19 @@ const CreateCourse = () => {
                 <input
                   placeholder="Day"
                   {...register(`routine.${index}.day`)}
-                  className="p-3 border rounded-lg"
+                  className={inputStyle}
                 />
 
                 <input
                   placeholder="Topic"
                   {...register(`routine.${index}.topic`)}
-                  className="p-3 border rounded-lg"
+                  className={inputStyle}
                 />
 
                 <input
                   placeholder="Time"
                   {...register(`routine.${index}.time`)}
-                  className="p-3 border rounded-lg"
+                  className={inputStyle}
                 />
 
                 <button
@@ -383,20 +398,20 @@ const CreateCourse = () => {
                 <input
                   placeholder="Student Name"
                   {...register(`reviews.${index}.name`)}
-                  className="p-3 border rounded-lg"
+                  className={inputStyle}
                 />
 
                 <input
                   type="number"
                   placeholder="Rating"
                   {...register(`reviews.${index}.rating`)}
-                  className="p-3 border rounded-lg"
+                  className={inputStyle}
                 />
 
                 <input
                   placeholder="Comment"
                   {...register(`reviews.${index}.comment`)}
-                  className="p-3 border rounded-lg"
+                  className={inputStyle}
                 />
 
                 <button
@@ -424,24 +439,29 @@ const CreateCourse = () => {
 
           {/* CONTACT */}
           <div>
-            <label className="font-semibold dark:text-white">Contact</label>
+            <label className="font-semibold dark:text-white">Contact <span className="text-red-500">*</span></label>
             <input
               type="text"
-              {...register("contact")}
-              className="w-full mt-2 p-3 border rounded-lg"
+              {...register("contact", { required: "Contact is required" })}
+              className={inputStyle}
             />
           </div>
 
           {/* OVERVIEW */}
           <div>
             <label className="font-semibold dark:text-white">
-              Course Overview
+              Course Overview <span className="text-red-500">*</span>
             </label>
             <textarea
-              rows="4"
-              {...register("overview")}
-              className="w-full mt-2 p-3 border rounded-lg"
+              rows="4" placeholder="এই কোর্সে কলেজ পর্যায়ের গণিত সম্পূর্ণভাবে সহজভাবে শেখানো হবে।"
+              {...register("overview", { required: "course overview is required" })}
+              className={`${inputStyle} ${errors.overview ? "!border-red-500" : ""}`}
             />
+            {errors?.overview && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.overview.message}
+              </p>
+            )}
           </div>
 
           {/* ADMISSION */}
@@ -449,24 +469,34 @@ const CreateCourse = () => {
 
             <div>
               <label className="font-semibold dark:text-white">
-                Admission Status
+                Admission Status <span className="text-red-500">*</span>
               </label>
               <input
-                type="text"
-                {...register("admissionStatus")}
-                className="w-full mt-2 p-3 border rounded-lg"
+                type="text" placeholder="ভর্তি চলছে..."
+                {...register("admissionStatus", { required: "admission status is required" })}
+                className={`${inputStyle} ${errors.admissionStatus ? "!border-red-500" : ""}`}
               />
+              {errors?.admissionStatus && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.admissionStatus.message}
+                </p>
+              )}
             </div>
 
             <div>
-              <label className="font-semibold dark:text-white">Status</label>
+              <label className="font-semibold dark:text-white">Status <span className="text-red-500">*</span></label>
               <select
-                {...register("status")}
-                className="w-full mt-2 p-3 border rounded-lg"
+                {...register("status", { required: "status is required" })}
+                className={`${inputStyle} ${errors.status ? "!border-red-500" : ""}`}
               >
                 <option value="publish">Publish</option>
                 <option value="draft">Draft</option>
               </select>
+              {errors?.status && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.status.message}
+                </p>
+              )}
             </div>
 
           </div>

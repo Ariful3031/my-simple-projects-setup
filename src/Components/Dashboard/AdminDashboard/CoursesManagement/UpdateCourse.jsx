@@ -9,12 +9,13 @@ import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { useGetCourseListQuery, useUpdateSingleCourseMutation } from "../../../../redux/api/couresApi";
 import { useGetAllUsersAdminQuery } from "../../../../redux/api/authApi";
-import { Link, useParams } from "react-router";
+import { Link, Navigate, useNavigate, useParams } from "react-router";
 import { useGetAllCategoriesListQuery } from "../../../../redux/api/categoriesApi";
 
 const UpdateCourse = () => {
   const id = useParams()
   const courseId = id?.id;
+  const navigate = useNavigate()
 
 
   const [updateSingleCourse, { isLoading: updateLoading }] = useUpdateSingleCourseMutation()
@@ -103,6 +104,8 @@ const UpdateCourse = () => {
   });
 
   const [preview, setPreview] = useState(null);
+  const inputStyle =
+    "w-full mt-2 p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition";
 
   const handleImagePreview = (e) => {
     const file = e.target.files[0];
@@ -163,7 +166,9 @@ const UpdateCourse = () => {
           title: "Course Update",
           text: res?.message || "Success",
         });
+
       }
+      navigate("/dashboard/course-list")
 
     } catch (err) {
       toast.error("Something went wrong!");
@@ -171,11 +176,11 @@ const UpdateCourse = () => {
   };
 
   return (
-    <div className=" bg-gray-100 dark:bg-gray-900 p-4 md:p-8 text-gray-800 dark:text-white">
-      <div className="bg-white dark:bg-gray-800 p-6 shadow-xl rounded-md">
+    <div className=" min-h-screen bg-gray-100 dark:bg-gray-900 p-4 md:p-8 transition-colors duration-300">
+      <div className="max-w-6xl mx-auto bg-white dark:bg-gray-800 p-6 md:p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700">
         {/* Header */}
 
-        <div className="shadow p-4 rounded-lg mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+        {/* <div className="shadow p-4 rounded-lg mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
           <h2 className="text-xl font-semibold text-primary-500">
             Update Course
           </h2>
@@ -184,6 +189,16 @@ const UpdateCourse = () => {
             className="text-sm text-gray-500 dark:text-gray-400"
           >
             <span className="font-bold">Dashboard</span> / Course List
+          </Link>
+        </div> */}
+
+
+        <div className="mb-6 flex flex-col md:flex-row justify-between gap-3 bg-gray-50 dark:bg-gray-700/40 p-4 rounded-xl">
+          <h2 className="text-xl font-semibold text-green-500">
+            Update Course
+          </h2>
+          <Link to="/dashboard/course-list" className="text-sm text-gray-500 dark:text-gray-300">
+            Dashboard / Course List
           </Link>
         </div>
 
@@ -196,7 +211,7 @@ const UpdateCourse = () => {
             <input
               type="text"
               {...register("title", { required: "Title required" })}
-              className="w-full mt-2 p-3 rounded-lg border"
+              className={inputStyle}
             />
           </div>
 
@@ -209,7 +224,7 @@ const UpdateCourse = () => {
               accept="image/*"
               {...register("thumbnail")}
               onChange={handleImagePreview}
-              className="w-full mt-2 p-2 border rounded-lg"
+              className={inputStyle}
             />
 
             {preview && (
@@ -217,7 +232,7 @@ const UpdateCourse = () => {
               <img
                 src={preview}
                 alt="preview"
-                className="mt-3 w-40 h-24 object-cover rounded-lg"
+                className="mt-3 w-40 rounded-lg border dark:border-gray-600"
               />
               // <img
               //   src={preview}
@@ -237,7 +252,7 @@ const UpdateCourse = () => {
               <input
                 type="number"
                 {...register("regularPrice")}
-                className="w-full mt-2 p-3 border rounded-lg"
+                className={inputStyle}
               />
             </div>
 
@@ -248,7 +263,7 @@ const UpdateCourse = () => {
               <input
                 type="number"
                 {...register("discountedPrice")}
-                className="w-full mt-2 p-3 border rounded-lg"
+                className={inputStyle}
               />
             </div>
 
@@ -262,7 +277,7 @@ const UpdateCourse = () => {
               <input
                 type="text"
                 {...register("duration")}
-                className="w-full mt-2 p-3 border rounded-lg"
+                className={inputStyle}
               />
             </div>
 
@@ -273,7 +288,7 @@ const UpdateCourse = () => {
               <input
                 type="number"
                 {...register("totalLecture")}
-                className="w-full mt-2 p-3 border rounded-lg"
+                className={inputStyle}
               />
             </div>
 
@@ -284,7 +299,7 @@ const UpdateCourse = () => {
             <label className="font-semibold dark:text-white">Language</label>
             <select
               {...register("language")}
-              className="w-full mt-2 p-3 border rounded-lg"
+              className={inputStyle}
             >
               <option value="বাংলা">বাংলা</option>
               <option value="English">English</option>
@@ -298,17 +313,17 @@ const UpdateCourse = () => {
             </label>
 
             {fields.map((item, index) => (
-              <div key={item.id} className="flex gap-2 mt-2">
+              <div key={item.id} className="flex items-center gap-2 mt-2">
 
                 <input
                   {...register(`includes.${index}`)}
-                  className="flex-1 p-3 border rounded-lg"
+                  className={inputStyle}
                 />
 
                 <button
                   type="button"
                   onClick={() => remove(index)}
-                  className="bg-red-500 text-white px-3 rounded"
+                  className="bg-red-500 text-white px-3 rounded py-2"
                 >
                   Remove
                 </button>
@@ -335,7 +350,7 @@ const UpdateCourse = () => {
             <select
               multiple
               {...register("instructorIds")}
-              className="w-full mt-2 p-3 border rounded-lg"
+              className="w-full mt-2 p-3 border text-black rounded-lg"
             >
               {teacherData?.map((teacher, index) => (
                 <option key={index} value={teacher?._id}>
@@ -398,19 +413,19 @@ const UpdateCourse = () => {
                 <input
                   placeholder="Day"
                   {...register(`routine.${index}.day`)}
-                  className="p-3 border rounded-lg"
+                  className={inputStyle}
                 />
 
                 <input
                   placeholder="Topic"
                   {...register(`routine.${index}.topic`)}
-                  className="p-3 border rounded-lg"
+                  className={inputStyle}
                 />
 
                 <input
                   placeholder="Time"
                   {...register(`routine.${index}.time`)}
-                  className="p-3 border rounded-lg"
+                  className={inputStyle}
                 />
 
                 <button
@@ -449,20 +464,20 @@ const UpdateCourse = () => {
                 <input
                   placeholder="Student Name"
                   {...register(`reviews.${index}.name`)}
-                  className="p-3 border rounded-lg"
+                  className={inputStyle}
                 />
 
                 <input
                   type="number"
                   placeholder="Rating"
                   {...register(`reviews.${index}.rating`)}
-                  className="p-3 border rounded-lg"
+                  className={inputStyle}
                 />
 
                 <input
                   placeholder="Comment"
                   {...register(`reviews.${index}.comment`)}
-                  className="p-3 border rounded-lg"
+                  className={inputStyle}
                 />
 
                 <button
@@ -494,7 +509,7 @@ const UpdateCourse = () => {
             <input
               type="text"
               {...register("contact")}
-              className="w-full mt-2 p-3 border rounded-lg"
+              className={inputStyle}
             />
           </div>
 
@@ -506,7 +521,7 @@ const UpdateCourse = () => {
             <textarea
               rows="4"
               {...register("overview")}
-              className="w-full mt-2 p-3 border rounded-lg"
+              className={inputStyle}
             />
           </div>
 
@@ -520,7 +535,7 @@ const UpdateCourse = () => {
               <input
                 type="text"
                 {...register("admissionStatus")}
-                className="w-full mt-2 p-3 border rounded-lg"
+                className={inputStyle}
               />
             </div>
 
@@ -528,7 +543,7 @@ const UpdateCourse = () => {
               <label className="font-semibold dark:text-white">Status</label>
               <select
                 {...register("status")}
-                className="w-full mt-2 p-3 border rounded-lg"
+                className={inputStyle}
               >
                 <option value="publish">Publish</option>
                 <option value="draft">Draft</option>

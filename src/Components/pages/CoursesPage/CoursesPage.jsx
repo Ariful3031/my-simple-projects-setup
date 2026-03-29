@@ -74,12 +74,17 @@ const CoursesPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
 
         {
-          allCoursesData?.map((course) => (
-
-
-            <CourseCard key={course.id} course={course} ></CourseCard>
-
-          ))
+          allCoursesData?.length > 0 ? (
+            allCoursesData.map((course) => (
+              <CourseCard key={course.id} course={course} />
+            ))
+          ) : (
+            <div className="col-span-full flex justify-center items-center min-h-[50vh]">
+              <p className="text-red-400 text-2xl font-bold">
+                No Course Found
+              </p>
+            </div>
+          )
         }
 
       </div>
