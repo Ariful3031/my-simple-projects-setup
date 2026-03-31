@@ -2,14 +2,14 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged,
 import { AuthContext } from "../AuthContext/AuthContext";
 import { useEffect, useState } from "react";
 import auth from "../../firebase/firebase.config";
-import { toast } from "react-toastify";
-import { useRegisterUserMutation } from "../../redux/api/authApi";
-import { useLocation, useNavigate } from "react-router";
+// import { toast } from "react-toastify";
+// import { useRegisterUserMutation } from "../../redux/api/authApi";
+// import { useLocation, useNavigate } from "react-router";
 
 
 
 const AuthProvider = ({ children }) => {
-   
+
     // const location = useLocation();
     // const navigate = useNavigate()
 
@@ -31,9 +31,9 @@ const AuthProvider = ({ children }) => {
 
     // create user / register user 
     const createUser = async (email, password) => {
-        setLoading (true);
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
-      
+
     };
 
     // sign user / login user 
@@ -45,19 +45,12 @@ const AuthProvider = ({ children }) => {
 
 
     const logOutUser = () => {
-        signOut(auth)
-            .then(() => {
-                toast.success('Logout Successful')
-                // Sign-out successful.
-            }).catch((err) => {
-                toast.error(err.message)
-                // An error happened.
-            });
+        return signOut(auth);
     }
 
 
     // google login 
-    const handleGoogleLogin =() => {
+    const handleGoogleLogin = () => {
         setLoading(true)
         return signInWithPopup(auth, googleProvider)
     }

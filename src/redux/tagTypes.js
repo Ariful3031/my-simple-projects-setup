@@ -4,7 +4,8 @@ export const tagTypes = {
   COURSE: "course",
   CONTACT: "contact",
   USER: "user",
-  CATEGORY: "category"
+  CATEGORY: "category",
+  CONTENT: "content",
 
 };
 
