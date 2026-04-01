@@ -5,7 +5,6 @@ import InstructorGrid from '../Home/Instructors/InstructorGrid'
 // import { teacherData } from '../Home/Instructors/Instructors'
 import Loading from '../Loading/Loading'
 import { useGetAllUsersAdminQuery } from '../../../redux/api/authApi'
-import InstructorsLoadingSkeleton from '../LoadingPage/InstructorsLoadingSkeleton '
 
 
 
@@ -25,7 +24,7 @@ const InstructorsPage = () => {
   }
 
   if (isLoading) {
-    return <InstructorsLoadingSkeleton></InstructorsLoadingSkeleton>
+    return <Loading></Loading>
   }
   return (
     <div className="bg-white dark:bg-gray-900 min-h-screen transition-colors duration-300">

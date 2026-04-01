@@ -8,6 +8,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../context/AuthContext/AuthContext";
 import { FiChevronDown, FiChevronsLeft, FiChevronUp, FiHome, FiMenu, FiSearch } from "react-icons/fi";
 import useDatabaseCurrentUser from "../../hooks/useDatabaseCurrentUser";
+import useLogout from "../../hooks/useLogout";
 // import { IoSettings } from "react-icons/io5";
 
 // import Swal from "sweetalert2";
@@ -109,7 +110,8 @@ const DropdownItem = ({ icon, label, sidebarOpen, subLinks = [] }) => {
 
 const StudentDashboard = () => {
     const [sidebarOpen, setSidebarOpen] = useState(true);
-    const { logOutUser, currentUser } = useContext(AuthContext)
+    const { currentUser } = useContext(AuthContext);
+     const handleLogout = useLogout();
 
     const [open, setOpen] = useState(false);
     const { currentDatabaseUser, isLoading } = useDatabaseCurrentUser()
@@ -297,7 +299,7 @@ const StudentDashboard = () => {
 
                                             <hr className="border-t dark:border-gray-700" />
                                             <button
-                                                onClick={logOutUser}
+                                                onClick={handleLogout}
                                                 className="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900 transition"
                                             >
                                                 <FaSignOutAlt className="text-lg" /> Logout

@@ -1,29 +1,31 @@
-import { useParams } from "react-router";
+import React, { useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { useGetCourseListQuery } from "../../../redux/api/couresApi";
-import { useState } from "react";
+import Loading from "../Loading/Loading";
 import CourseDetailsLoadingSkeleton from "../LoadingPage/CourseDetailsLoadingSkeleton";
+
+
 
 const CourseDetails = () => {
 
   const { data, isLoading, error } = useGetCourseListQuery();
   const { id } = useParams();
 
+
+  // Dynamic course find by ID
   const coursesData = data;
+  // console.log(id);
+  // console.log(coursesData)
+
   const course = coursesData?.find((c) => c?.id === id);
 
   const [activeTab, setActiveTab] = useState("overview");
 
-  // ✅ FIRST check loading
   if (isLoading) {
-    return <CourseDetailsLoadingSkeleton />;
+    return <CourseDetailsLoadingSkeleton></CourseDetailsLoadingSkeleton>
   }
 
-  // ✅ Optional error handling
-  if (error) {
-    return <div className="text-center py-10 text-red-500">Something went wrong</div>;
-  }
 
-  // ✅ After loading finished
   if (!course) {
     return <div className="text-center py-10">Course Not Found</div>;
   }
@@ -95,10 +97,114 @@ const CourseDetails = () => {
 
             {/* Overview */}
             {activeTab === "overview" && (
-              <div>
-                <h3 className="font-semibold mb-2">Description</h3>
-                <p className="whitespace-pre-line">{course.overview || "No description available."}</p>
-              </div>
+              <>
+
+                {/* over view section  */}
+                <div>
+                  <h3 className="font-semibold mb-2">Description</h3>
+                  <p className="whitespace-pre-line">{course.overview || "No description available."}</p>
+                </div>
+
+                {/* Instructors Section */}
+
+                <div>
+                  {course?.instructors?.length ? (
+
+                    <>
+                      <h3 className="font-semibold mb-2">Instructors</h3>
+
+                      <div className="space-y-4">
+                        {course.instructors.map((ins, index) => (
+                          <div key={index} className="flex items-start gap-4 mt-3">
+                            <Link to={`/instructor/details/${ins?._id}`}>
+                              <img
+                                src={ins?.photoURL}
+                                alt=""
+                                className="w-20 h-20 rounded-full object-cover"
+                              />
+                            </Link>
+
+                            <div>
+                              <h4 className="font-semibold text-base">
+                                {ins?.displayName}
+                              </h4>
+                              <p className="text-gray-600 mt-1 dark:text-gray-400">
+                                {ins?.jobTitle || "No bio available"}
+                              </p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+
+
+                    </>
+                  ) : (
+                    <p>No instructor information available.</p>
+                  )}
+                </div>
+
+                {/* Routine section  */}
+                <div>
+                  {course.routine?.length ? (
+
+                    <>
+                      <h3 className="font-semibold mb-2">Routine</h3>
+
+                      <div className="space-y-4">
+                        {course.routine.map((item, index) => (
+                          <div
+                            key={index}
+                            className="flex justify-between border p-3 rounded-md"
+                          >
+                            <span>{item.day}</span>
+                            <span>{item.topic}</span>
+                            <span>{item.time}</span>
+                          </div>
+                        ))}
+                      </div>
+
+
+                    </>
+                  ) : (
+                    <p>No routine available.</p>
+                  )}
+                </div>
+
+                {/* Reviews section  */}
+                <div>
+                  {course.reviews?.length ? (
+
+                    <>
+                      <h3 className="font-semibold mb-2">Reviews</h3>
+                      <div className="space-y-4">
+                        {course.reviews.map((review, index) => (
+                          <div
+                            key={index}
+                            className="border p-4 rounded-md"
+                          >
+                            <h4 className="font-semibold">
+                              {review.name}
+                            </h4>
+                            <p className="text-yellow-500">
+                              {"★".repeat(review.rating)}
+                            </p>
+                            <p className="text-gray-600 mt-1">
+                              {review.comment}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+
+
+                    </>
+                  ) : (
+                    <p>No reviews yet.</p>
+                  )}
+                </div>
+              </>
+
+
+
             )}
 
 
@@ -206,22 +312,22 @@ const CourseDetails = () => {
           <div className="mt-6 space-y-3 text-sm text-gray-700">
 
             <div className="flex justify-between">
-              <span>Course Duration</span>
+              <span>⏱️ Course Duration</span>
               <span>{course.duration || "3 Month"}</span>
             </div>
 
             <div className="flex justify-between">
-              <span>Total Lecture</span>
+              <span>📚 Total Lecture</span>
               <span>{course.totalLecture || "25"}</span>
             </div>
 
             <div className="flex justify-between">
-              <span>Enrolled</span>
+              <span>👥 Enrolled</span>
               <span>{course.enrolled || "1200+"}</span>
             </div>
 
             <div className="flex justify-between">
-              <span>Language</span>
+              <span>🅰️ Language</span>
               <span>{course.language || "বাংলা"}</span>
             </div>
 
@@ -240,7 +346,8 @@ const CourseDetails = () => {
                 "PDF Materials",
                 "Certificate"
               ]).map((item, index) => (
-                <li key={index}>✔️ {item}</li>
+                // <li key={index}>✔️ {item}</li>
+                <li key={index}> {item}</li>
               ))}
             </ul>
           </div>
@@ -259,7 +366,6 @@ const CourseDetails = () => {
     </div>
   );
 };
-
 
 export default CourseDetails;
 

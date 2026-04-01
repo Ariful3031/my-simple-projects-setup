@@ -25,9 +25,6 @@ const ProfileCard = ({ teacher }) => {
                 <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
                     {teacher?.displayName}
                 </h2>
-                <p className="text-gray-800 dark:text-white">
-                    {teacher?.jobTitle}
-                </p>
 
                 <p className="text-indigo-500 mt-2">
                     {teacher?.institute}

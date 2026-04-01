@@ -32,6 +32,10 @@ import SingleCategoriesCourse from "../components/pages/Home/TrendingCategories/
 import CreateCategory from "../components/Dashboard/AdminDashboard/CoursesManagement/CreateCategory";
 import CategoriesList from "../components/Dashboard/AdminDashboard/CoursesManagement/CategoriesList";
 import UpdateCategory from "../components/Dashboard/AdminDashboard/CoursesManagement/UpdateCategory";
+import CourseContents from "../components/Dashboard/StudentDashboard/MyCourses/CourseContents";
+import UpdateModuleContent from "../components/Dashboard/AdminDashboard/ContentManagement/UpdateModuleContent";
+import CourseOutlineTab from "../components/Dashboard/AdminDashboard/CoursesManagement/CourseOutlineTab";
+import AddCourseOutline from "../components/Dashboard/AdminDashboard/CoursesManagement/AddCourseOutline";
 
 
 
@@ -152,6 +156,21 @@ export const router = createBrowserRouter([
         path: 'course-list',
         element: <CoursesList></CoursesList>
       },
+      {
+        path: 'course-Outline',
+        element: <CourseOutlineTab></CourseOutlineTab>
+      },
+      {
+        path: 'add-course-outline',
+        element: <AddCourseOutline></AddCourseOutline>
+      },
+
+      // course Content seciton 
+
+      {
+        path: 'update-content',
+        element: <UpdateModuleContent></UpdateModuleContent>
+      },
       // category section 
       {
         path: 'create-category',
@@ -210,6 +229,10 @@ export const router = createBrowserRouter([
       {
         path: 'my-course',
         element: <MyCourses></MyCourses>
+      },
+      {
+        path: 'course-contents/:id',
+        element: <CourseContents></CourseContents>
       },
 
     ]

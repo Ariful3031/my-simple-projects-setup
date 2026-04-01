@@ -43,13 +43,13 @@ export default function UpdateModuleContent() {
   // ------------------ PREFILL ------------------
   useEffect(() => {
     if (selectedContent) {
-      reset();
-      setValue("title", selectedContent.title || "");
-      setValue("contentType", selectedContent.type || "link");
-      setValue("content", selectedContent.link || "");
+      reset({
+        title: selectedContent?.title || "",
+        contentType: selectedContent?.type || "link",
+        content: selectedContent?.link || "",
+      });
     }
-  }, [selectedContent, reset, setValue]);
-
+  }, [selectedContent, reset]);
   // ------------------ HANDLERS ------------------
 
   const handleCourseSelect = (id) => {
@@ -84,9 +84,9 @@ export default function UpdateModuleContent() {
         moduleIndex: selectedModuleIndex,
         subIndex: selectedContentIndex,
         data: {
-          title: data.title,
-          type: data.contentType,
-          link: data.content,
+          title: data?.title,
+          type: data?.contentType,
+          link: data?.content,
         },
       }).unwrap();
 
@@ -116,9 +116,9 @@ export default function UpdateModuleContent() {
             className="w-full p-3 border rounded-xl"
           >
             <option value="">Select Course</option>
-            {courses.map((c) => (
+            {courses?.map((c) => (
               <option key={c._id} value={c._id}>
-                {c.title}
+                {c?.title}
               </option>
             ))}
           </select>
@@ -199,9 +199,9 @@ export default function UpdateModuleContent() {
                 className="w-full p-3 border rounded-xl"
               >
                 <option value="">Select Type</option>
-                <option value="link">YouTube</option>
-                <option value="pdf">PDF</option>
-                <option value="classLink">Zoom</option>
+                <option value="live-link">Live Link</option>
+                <option value="vedio">Record vedio Link</option>
+                <option value="pdf">PDF Link</option>
               </select>
 
               {/* {contentType && ( */}
