@@ -6,10 +6,10 @@ import StatsSection from "./StatsSection/StatsSection";
 import MeetTeam from "./MeetTeam/MeetTeam";
 import WhyChooseUs from "./WhyChooseUs/WhyChooseUs";
 import OurStory from "./OurStory/OurStory";
-import AboutUsHero from "./AboutUsHero/AboutUsHero";
+// import AboutUsHero from "./AboutUsHero/AboutUsHero";
 import FooterSubBannerCta from "../../Shared/FooterSubBannerCta/FooterSubBannerCta";
 import HeroSubBanner from "../../Shared/HeroSubBanner/HeroSubBanner";
-import bannerImage from "../../../assets/about-us-subbaner-image.jpg"
+// import bannerImage from "../../../assets/about-us-subbaner-image.jpg"
 
 const AboutUsPage = () => {
 
@@ -22,7 +22,8 @@ const AboutUsPage = () => {
   const subBannerData = {
     title: 'About Our Platform',
     description: "We are dedicated to providing quality online education for everyone.",
-    subBannerImage: bannerImage,
+    subBannerImage: 'https://www.shutterstock.com/image-vector/about-us-header-image-icon-600nw-2665862721.jpg',
+    // subBannerImage: bannerImage,
   }
 
   return (
@@ -55,32 +56,3 @@ const AboutUsPage = () => {
 
 export default AboutUsPage;
 
-// import React from 'react'
-// import { Player } from '@lottiefiles/react-lottie-player';
-// const AboutUsPage = () => {
-//   return (
-//     <div className=''>
-//       <h1>this is our about-us page</h1>
-//       <Player
-//         autoplay
-//         loop
-//         src="Loading.json" // Replace with your animation URL
-//         style={{ height: '300px', width: '300px' }}
-//       />
-//       <Player
-//         autoplay
-//         loop
-//         src="Lottie.json" // Replace with your animation URL
-//         style={{ height: '300px', width: '300px' }}
-//       />
-//       <Player
-//         autoplay
-//         loop
-//         src="Lottie3.json" // Replace with your animation URL
-//         style={{ height: '300px', width: '300px' }}
-//       />
-//     </div>
-//   )
-// }
-
-// export default AboutUsPage
