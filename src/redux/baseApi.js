@@ -4,7 +4,7 @@ import { tagTypeList } from "./tagTypes";
 export const baseApi=createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({
-        // baseUrl: "http://localhost:3000",
+        // baseUrl: "https://simple-react-project-setup-server.vercel.app/api",
         baseUrl: import.meta.env.VITE_SERVER_SIDE_APP,
     }),
 
