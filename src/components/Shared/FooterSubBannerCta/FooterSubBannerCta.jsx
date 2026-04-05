@@ -3,8 +3,7 @@ import React from 'react'
 import { Link } from 'react-router'
 
 const FooterSubBannerCta = ({ footerSubBannerCtaInfo }) => {
-    console.log(footerSubBannerCtaInfo)
-    // to={`${footerSubBannerCtaInfo?.buttonLInk}`} 
+   
     return (
         <div className="py-8 md:py-20 text-center transition-colors duration-500 bg-indigo-500 dark:bg-gradient-to-r dark:from-[#0f172a] dark:via-[#1e1b4b] dark:to-black">
             <div className="px-2 md:px-6">

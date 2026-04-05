@@ -18,7 +18,6 @@ function Navbar() {
         () => localStorage.getItem("theme") === "dark"
     );
     const { currentRole, roleLoading } = useCurrentRole();
-    // console.log(currentRole)
     const navItems = [
         { name: "Home", href: "/" },
         { name: "Courses", href: "/courses" },
@@ -51,7 +50,7 @@ function Navbar() {
     }, [isDarkMode]);
 
     const currentDatabaseUser = useDatabaseCurrentUser();
-    // console.log(currentDatabaseUser)
+   
 
     return (
         <>

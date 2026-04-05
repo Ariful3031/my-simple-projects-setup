@@ -117,7 +117,7 @@ const AdminDashboard = () => {
 
     const [open, setOpen] = useState(false);
     const { currentDatabaseUser, isLoading } = useDatabaseCurrentUser();
-    // console.log(currentDatabaseUser)
+    
     const navigate = useNavigate();
     const [darkMode, setDarkMode] = useState(
         () => localStorage.getItem("theme") === "dark",

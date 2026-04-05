@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import GoogleLogin from '../GoogleLogin/GoogleLogin';
 import { useRegisterUserMutation } from '../../../redux/api/authApi';
+import Swal from 'sweetalert2';
 
 const Register = () => {
     const [registerUser, { isLoading, error }] = useRegisterUserMutation()
@@ -16,7 +17,7 @@ const Register = () => {
     const { createUser } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate()
-    // console.log(createUser)
+
     const handleCreateUser = async (data) => {
         const email = data.email;
         const password = data.password;
@@ -36,13 +37,19 @@ const Register = () => {
             };
             // এখানে Redux / RTK Query mutation call করো
             const res = await registerUser(userInfo).unwrap();
-            if (res?.insertedId) {
-                console.log('User saved in DB');
-            }
 
-            // Step 4: navigate after login
-            navigate(location?.state?.from || '/');
-            toast.success('Login successful');
+
+            if (res?.insertedId) {
+
+                Swal.fire({
+                    icon: "success",
+                    title: "Login successful",
+                    text: "Success",
+                });
+
+
+                navigate(location?.state?.from || '/');
+            }
 
         } catch (err) {
             toast.error(err.message || "Something went wrong");

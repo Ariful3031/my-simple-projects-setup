@@ -12,13 +12,10 @@ const CategoriesList = () => {
     const [orderBy, setOrderBy] = useState("latest");
 
     const { data, isLoading, error } = useGetAllCategoriesListQuery();
-    console.log(data)
-
 
     if (isLoading) {
         return <Loading></Loading>
     }
-
 
     return (
         <>

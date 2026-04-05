@@ -7,9 +7,8 @@ const InstructorCourses = ({ teacher }) => {
     const { data, isLoading, error } = useGetCourseListQuery();
     const allCoursesData = data;
 
-    // console.log(teacher?.courses)
     const teacherCourseIds = teacher?.courses?.map((course) => course?.courseId)
-    // console.log(teacherCourseIds)
+
 
     const instructorCoursesData = allCoursesData?.filter((course) => teacherCourseIds?.includes(course.id));
 

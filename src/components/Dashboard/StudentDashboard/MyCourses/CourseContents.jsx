@@ -9,7 +9,6 @@ export default function CourseContents() {
     const user = useCurrentUser();
     const email = user?.email
     const { data, isLoading } = useGetMySingleCourseQuery({ id, email })
-    // console.log(data?.course_contents)
     const contentsData = data?.topics;
 
     

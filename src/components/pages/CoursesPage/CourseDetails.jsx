@@ -14,8 +14,7 @@ const CourseDetails = () => {
 
   // Dynamic course find by ID
   const coursesData = data;
-  // console.log(id);
-  // console.log(coursesData)
+
 
   const course = coursesData?.find((c) => c?.id === id);
 

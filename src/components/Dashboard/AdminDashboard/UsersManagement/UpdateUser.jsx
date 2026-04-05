@@ -3,10 +3,12 @@ import { useParams, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useGetAllUsersAdminQuery, useUpdateSingleUserMutation } from "../../../../redux/api/authApi";
 import Loading from "../../../pages/Loading/Loading";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const UpdateUser = () => {
     const { email } = useParams();
-    console.log(email)
+
     const { data, isLoading } = useGetAllUsersAdminQuery({ role: "student" });
     const [updateSingleUser, { isLoading: updateLoading }] = useUpdateSingleUserMutation();
 
@@ -14,7 +16,7 @@ const UpdateUser = () => {
     const [imageFile, setImageFile] = useState(null);
     const [preview, setPreview] = useState("");
 
-    // ✅ Load user default data
+    //  Load user default data
     useEffect(() => {
         const singleUser = data?.find((user) => user?.email === email);
 
@@ -25,7 +27,7 @@ const UpdateUser = () => {
 
     }, [email, data, reset]);
 
-    // ✅ Watch photoURL for live preview (when user pastes link)
+    //  Watch photoURL for live preview (when user pastes link)
     const photoURL = watch("photoURL");
 
     useEffect(() => {
@@ -34,7 +36,7 @@ const UpdateUser = () => {
         }
     }, [photoURL]);
 
-    // ✅ Handle file upload
+    //  Handle file upload
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
 
@@ -46,7 +48,7 @@ const UpdateUser = () => {
         }
     };
 
-    // ✅ Submit
+    //  Submit
     const onSubmit = async (data) => {
         try {
 
@@ -70,13 +72,19 @@ const UpdateUser = () => {
                 data: formData
             }).unwrap();
 
-            console.log(res);
 
-            alert("User Updated Successfully ✅");
+            if (res.message === "success") {
+                Swal.fire({
+                    icon: "success",
+                    title: "User update!",
+                    text: res?.message || "Successfully",
+                });
+
+            }
 
         } catch (error) {
-            console.error(error);
-            alert("Update Failed ❌");
+
+            toast.error(error?.message || "Update Failed ");
         }
     };
 

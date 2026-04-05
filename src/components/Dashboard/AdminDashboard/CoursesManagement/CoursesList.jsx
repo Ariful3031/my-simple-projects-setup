@@ -12,7 +12,6 @@ const CoursesList = () => {
     const [orderBy, setOrderBy] = useState("latest");
 
     const { data, isLoading, error } = useGetCourseListQuery();
-    console.log(data)
 
 
     if (isLoading) {

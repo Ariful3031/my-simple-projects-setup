@@ -3,6 +3,7 @@ import { AuthContext } from '../../../context/AuthContext/AuthContext';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useRegisterUserMutation } from '../../../redux/api/authApi';
+import Swal from 'sweetalert2';
 
 const GoogleLogin = () => {
     const { handleGoogleLogin } = useContext(AuthContext);
@@ -12,10 +13,9 @@ const GoogleLogin = () => {
 
     const handleGoogleLoginButton = async () => {
         try {
-            // Step 1: login with Google
+
             const result = await handleGoogleLogin();
 
-            // Step 2: prepare user info
             const userInfo = {
                 email: result?.user?.email,
                 emailVerified: result?.user?.emailVerified,
@@ -27,15 +27,19 @@ const GoogleLogin = () => {
                 phoneNumber: result?.user?.phoneNumber,
             };
 
-            // Step 3: save to DB
             const res = await registerUser(userInfo).unwrap();
-            if (res?.insertedId) {
-                console.log('User saved in DB');
+            if (res?.insertedId || res?.message === "user already exists") {
+
+                Swal.fire({
+                    icon: "success",
+                    title: "Login successful",
+                    text: "Success",
+                });
+
+
+                navigate(location?.state?.from || '/');
             }
 
-            // Step 4: navigate after login
-            navigate(location?.state?.from || '/');
-            toast.success('Login successful');
         } catch (err) {
             toast.error(err.message || 'Google login failed');
         }

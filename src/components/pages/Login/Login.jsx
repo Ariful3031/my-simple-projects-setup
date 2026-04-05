@@ -6,6 +6,7 @@ import { AuthContext } from '../../../context/AuthContext/AuthContext';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import GoogleLogin from '../GoogleLogin/GoogleLogin';
+import Swal from 'sweetalert2';
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -19,19 +20,22 @@ const Login = () => {
 
         signInUser(email, password)
             .then((result) => {
-                // Signed in 
-                toast.success("login successfull")
+                Swal.fire({
+                    icon: "success",
+                    title: "Login successfull",
+                    text: "Success",
+                });
                 navigate(location?.state?.from || '/');
-                return result.user;
+                return result?.user;
             })
             .catch((err) => {
-                toast.error(err.message)
-                console.log(err.message)
+                toast.error(err?.message || "login failed")
+
             });
 
     }
 
-    
+
 
     return (
         <div className='bg-[#FFF0E1] w-full mx-auto h-screen my-auto flex justify-center items-center'>

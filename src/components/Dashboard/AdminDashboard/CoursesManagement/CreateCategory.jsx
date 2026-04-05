@@ -40,8 +40,6 @@ const CreateCourse = () => {
       );
 
       const res = await createCategory(formData).unwrap();
-      console.log(res)
-
 
       if (res?.message === "success") {
         Swal.fire({
