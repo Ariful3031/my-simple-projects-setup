@@ -71,7 +71,7 @@
 //           >
 //             {data?.data?.map((c, index) => (
 //               <SwiperSlide key={index}>
-//                 <div className="border my-2 border-primary-50 shadow-primary-300 bg-secondary-50 rounded-md shadow p-2 ">
+//                 <div className="border my-2 border-primary-50 shadow-primary-300 bg-black_primary-50 rounded-md shadow p-2 ">
 //                   <Link to={`/product-category/${c?.slug}`}>
 //                     <img
 //                       src={c?.imageUrl}

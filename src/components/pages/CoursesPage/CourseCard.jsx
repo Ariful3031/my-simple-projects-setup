@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const CourseCard = ({ course }) => {
 
   return (
-    <div className=" dark:bg-slate-700  rounded-xl shadow-md overflow-hidden border dark:border-gray-500">
+    <div className=" dark:bg-black_primary-800  rounded-xl shadow-md overflow-hidden border dark:border-gray-500">
 
       {/* Top Banner */}
       {/* <Link

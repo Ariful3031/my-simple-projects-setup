@@ -36,6 +36,9 @@ import CourseContents from "../components/Dashboard/StudentDashboard/MyCourses/C
 import UpdateModuleContent from "../components/Dashboard/AdminDashboard/ContentManagement/UpdateModuleContent";
 import CourseOutlineTab from "../components/Dashboard/AdminDashboard/CoursesManagement/CourseOutlineTab";
 import AddCourseOutline from "../components/Dashboard/AdminDashboard/CoursesManagement/AddCourseOutline";
+import Color from "../components/pages/Home/Other/Color";
+import GradientColor from "../components/pages/Home/Other/GradientColor";
+import ThreeColorGradient from "../components/pages/Home/Other/ThreeColorGradient";
 
 
 
@@ -184,6 +187,24 @@ export const router = createBrowserRouter([
         path: 'categories-list',
         element: <CategoriesList></CategoriesList>
       },
+
+
+      // Colors Managemnet 
+
+      {
+        path: 'color',
+        element: <Color></Color>
+      },
+      {
+        path: 'gradient_color',
+        element: <GradientColor></GradientColor>
+      },
+      {
+        path: 'three_color_gradient',
+        element: <ThreeColorGradient></ThreeColorGradient>
+      },
+
+
     ]
   },
 

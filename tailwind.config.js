@@ -35,14 +35,15 @@ export default {
                     800: "#1E293B",
                     900: "#0F172A",
                 },
+                
             },
             // fontFamily: {
             //     montserrat: ["Montserrat", "sans-serif"],
             // },
         },
     },
-    plugins: [
-        daisyui,
-        // scrollbarHide,
-    ],
+    plugins: [daisyui],
+    daisyui: {
+        themes: false, // অথবা custom theme
+    }
 };

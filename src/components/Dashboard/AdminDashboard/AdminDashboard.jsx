@@ -117,7 +117,7 @@ const AdminDashboard = () => {
 
     const [open, setOpen] = useState(false);
     const { currentDatabaseUser, isLoading } = useDatabaseCurrentUser();
-    
+
     const navigate = useNavigate();
     const [darkMode, setDarkMode] = useState(
         () => localStorage.getItem("theme") === "dark",
@@ -169,22 +169,27 @@ const AdminDashboard = () => {
                     <nav className="mt-4">
                         <ul className="space-y-1 text-sm">
                             <li className="relative group">
-                                <NavLink
-                                    to="#"
-                                    className={({
-                                        isActive,
-                                    }) => `group relative flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all ${isActive
-                                        ? " text-primary-500 shadow-md font-semibold"
-                                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
-                                    }`}
-                                >
-                                    <span className="text-base">
-                                        <FiHome />
-                                    </span>
-                                    {sidebarOpen && (
-                                        <span className="whitespace-nowrap">Dashboard</span>
-                                    )}
-                                </NavLink>
+                               
+                                    <NavLink
+                                        to="/dashboard"
+                                        className={({
+                                            isActive,
+                                        }) => `group relative flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all ${isActive
+                                            ? " text-primary-500 shadow-md font-semibold"
+                                            : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                                        }`}
+                                    >
+
+                                        <span className="text-base">
+                                            <FiHome />
+                                        </span>
+                                        {sidebarOpen && (
+                                            <span className="whitespace-nowrap">Dashboard</span>
+                                        )}
+
+
+                                    </NavLink>
+                    
                             </li>
                             {/* Manage course section  */}
                             <DropdownItem
@@ -203,11 +208,11 @@ const AdminDashboard = () => {
 
 
                             {/* course Content Management  */}
-                            {sidebarOpen && (
+                            {/* {sidebarOpen && (
                                 <li className="text-xs text-gray-400 dark:text-gray-500 py-4 px-3 tracking-wide uppercase">
                                     Manage Contnets
                                 </li>
-                            )}
+                            )} */}
 
                             <DropdownItem
                                 icon={<FaUsersGear />}
@@ -222,11 +227,11 @@ const AdminDashboard = () => {
                             />
 
                             {/* user management section  */}
-                            {sidebarOpen && (
+                            {/* {sidebarOpen && (
                                 <li className="text-xs text-gray-400 dark:text-gray-500 py-4 px-3 tracking-wide uppercase">
                                     Manage Users
                                 </li>
-                            )}
+                            )} */}
 
                             <DropdownItem
                                 icon={<FaUsersGear />}
@@ -236,6 +241,24 @@ const AdminDashboard = () => {
                                     { label: "Student List", to: "student-list" },
                                     { label: "Instructor List", to: "instructor-list" },
                                     { label: "Add User", to: "add-user" },
+
+                                ]}
+                            />
+                            {/* user management section  */}
+                            {sidebarOpen && (
+                                <li className="text-xs text-gray-400 dark:text-gray-500 py-4 px-3 tracking-wide uppercase">
+                                    Manage Colors
+                                </li>
+                            )}
+
+                            <DropdownItem
+                                icon={<FaUsersGear />}
+                                label="Manage Colors"
+                                sidebarOpen={sidebarOpen}
+                                subLinks={[
+                                    { label: "color", to: "color" },
+                                    { label: "Gradient Color ", to: "gradient_color" },
+                                    { label: "Three gradient", to: "three_color_gradient" },
 
                                 ]}
                             />
