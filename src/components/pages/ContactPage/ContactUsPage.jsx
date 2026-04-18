@@ -38,8 +38,8 @@ const ContactUsPage = () => {
                   📍
                 </div>
                 <div>
-                  <h3 className="font-semibold">Our Location</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                  <h3 className="font-semibold dark:text-white">Our Location</h3>
+                  <p className="text-sm text-gray-400 dark:text-gray-300">
                     111 House, Learning Street, Online Campus
                   </p>
                 </div>
@@ -50,8 +50,8 @@ const ContactUsPage = () => {
                   📞
                 </div>
                 <div>
-                  <h3 className="font-semibold">Phone Number</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                  <h3 className="font-semibold dark:text-white">Phone Number</h3>
+                  <p className="text-sm text-gray-400 dark:text-gray-300">
                     +880 1736-384167
                   </p>
                 </div>
@@ -62,8 +62,8 @@ const ContactUsPage = () => {
                   ✉️
                 </div>
                 <div>
-                  <h3 className="font-semibold">Email Address</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                  <h3 className="font-semibold dark:text-white">Email Address</h3>
+                  <p className="text-sm text-gray-400 dark:text-gray-300">
                     learn.inception@gmail.com
                   </p>
                 </div>
@@ -84,51 +84,56 @@ const ContactUsPage = () => {
             <form className="mt-6 space-y-4">
 
               <div>
-                <label className="block text-sm font-medium mb-1">
-                  Full Name *
+                <label className="block text-sm font-medium mb-1 dark:text-white">
+                  Full Name <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   placeholder="John Doe"
-                  className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700"
+                  required
+                  className="w-full p-3 rounded-lg dark:text-gray-300 border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">
-                  Email Address *
+                <label className="block text-sm font-medium mb-1 dark:text-white">
+                  Email Address <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="email"
                   placeholder="john@example.com"
-                  className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700"
+                  required
+                  className="w-full p-3 rounded-lg dark:text-gray-300 border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">
-                  Subject
+                <label className="block text-sm font-medium mb-1 dark:text-white">
+                  Subject <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   placeholder="Type your subject"
-                  className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700"
+                  required
+                  className="w-full p-3 rounded-lg dark:text-gray-300 border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">
-                  Your Message *
+                <label className="block text-sm font-medium mb-1 dark:text-white">
+                  Your Message <span className="text-red-500">*</span>
                 </label>
                 <textarea
                   rows="4"
                   placeholder="Type your message here..."
-                  className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 resize-none"
+                  required
+                  className="w-full p-3 rounded-lg dark:text-gray-300 border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 resize-none"
                 ></textarea>
               </div>
 
-              <div className="flex items-center gap-2 text-sm">
-                <input type="checkbox" />
+              <div className="flex items-center gap-2 text-sm dark:text-gray-300">
+                <input required type="checkbox" />
+                
                 <span>
                   I agree with <a className="text-blue-600 underline">terms & rules</a>.
                 </span>

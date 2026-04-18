@@ -36,7 +36,7 @@ const CourseDetails = () => {
         {/* LEFT SIDE */}
         <div className="lg:col-span-2">
 
-          <h1 className="text-2xl font-bold mb-2">
+          <h1 className="text-2xl font-bold mb-2 dark:text-white">
             {course?.title}
           </h1>
 
@@ -82,8 +82,8 @@ const CourseDetails = () => {
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`capitalize pb-1 ${activeTab === tab
-                  ? "border-b-2 border-red-600 text-black"
-                  : "text-gray-500"
+                  ? "border-b-2 border-red-600 text-black dark:text-primary-500"
+                  : "text-gray-500 dark:text-white"
                   }`}
               >
                 {tab}
@@ -100,8 +100,8 @@ const CourseDetails = () => {
 
                 {/* over view section  */}
                 <div>
-                  <h3 className="font-semibold mb-2">Description</h3>
-                  <p className="whitespace-pre-line">{course.overview || "No description available."}</p>
+                  <h3 className="font-semibold mb-2 dark:text-white">Description</h3>
+                  <p className="whitespace-pre-line dark:text-gray-300">{course.overview || "No description available."}</p>
                 </div>
 
                 {/* Instructors Section */}
@@ -110,7 +110,7 @@ const CourseDetails = () => {
                   {course?.instructors?.length ? (
 
                     <>
-                      <h3 className="font-semibold mb-2">Instructors</h3>
+                      <h3 className="font-semibold mb-2 text-xl dark:text-white ">Instructors :</h3>
 
                       <div className="space-y-4">
                         {course.instructors.map((ins, index) => (
@@ -124,7 +124,7 @@ const CourseDetails = () => {
                             </Link>
 
                             <div>
-                              <h4 className="font-semibold text-base">
+                              <h4 className="font-semibold text-base dark:text-gray-300">
                                 {ins?.displayName}
                               </h4>
                               <p className="text-gray-600 mt-1 dark:text-gray-400">
@@ -147,13 +147,13 @@ const CourseDetails = () => {
                   {course.routine?.length ? (
 
                     <>
-                      <h3 className="font-semibold mb-2">Routine</h3>
+                      <h3 className="font-semibold mb-2 text-xl dark:text-white">Routine:</h3>
 
                       <div className="space-y-4">
                         {course.routine.map((item, index) => (
                           <div
                             key={index}
-                            className="flex justify-between border p-3 rounded-md"
+                            className="flex justify-between border p-3 rounded-md dark:text-gray-300"
                           >
                             <span>{item.day}</span>
                             <span>{item.topic}</span>
@@ -174,20 +174,20 @@ const CourseDetails = () => {
                   {course.reviews?.length ? (
 
                     <>
-                      <h3 className="font-semibold mb-2">Reviews</h3>
+                      <h3 className="font-semibold mb-2 text-xl dark:text-white">Reviews:</h3>
                       <div className="space-y-4">
                         {course.reviews.map((review, index) => (
                           <div
                             key={index}
                             className="border p-4 rounded-md"
                           >
-                            <h4 className="font-semibold">
+                            <h4 className="font-semibold dark:text-md dark:text-gray-300 ">
                               {review.name}
                             </h4>
                             <p className="text-yellow-500">
                               {"★".repeat(review.rating)}
                             </p>
-                            <p className="text-gray-600 mt-1">
+                            <p className="text-gray-400 mt-1">
                               {review.comment}
                             </p>
                           </div>
@@ -220,10 +220,10 @@ const CourseDetails = () => {
                   </Link>
 
                   <div>
-                    <h4 className="font-semibold text-base">
+                    <h4 className="font-semibold text-base dark:text-gray-300">
                       {ins?.displayName}
                     </h4>
-                    <p className="text-gray-600 mt-1">
+                    <p className="text-gray-600 mt-1 dark:text-gray-400">
                       {ins?.jobTitle || "No bio available"}
                     </p>
                   </div>
@@ -239,7 +239,7 @@ const CourseDetails = () => {
                 {course.routine.map((item, index) => (
                   <div
                     key={index}
-                    className="flex justify-between border p-3 rounded-md"
+                    className="flex justify-between border p-3 rounded-md dark:text-gray-300"
                   >
                     <span>{item.day}</span>
                     <span>{item.topic}</span>
@@ -259,13 +259,13 @@ const CourseDetails = () => {
                     key={index}
                     className="border p-4 rounded-md"
                   >
-                    <h4 className="font-semibold">
+                    <h4 className="font-semibold dark:text-md dark:text-gray-300 ">
                       {review.name}
                     </h4>
                     <p className="text-yellow-500">
                       {"★".repeat(review.rating)}
                     </p>
-                    <p className="text-gray-600 mt-1">
+                    <p className="text-gray-400 mt-1">
                       {review.comment}
                     </p>
                   </div>
@@ -279,7 +279,7 @@ const CourseDetails = () => {
         </div>
 
         {/* RIGHT SIDE CARD */}
-        <div className="bg-white shadow-md rounded-xl p-5 border h-fit">
+        <div className="shadow-md rounded-xl dark:border-gray-700 p-5 border h-fit">
 
 
           {/* Price */}
@@ -303,12 +303,12 @@ const CourseDetails = () => {
           )}
 
           {/* Button */}
-          <button className="w-full bg-red-700 hover:bg-red-800 text-white py-2 rounded-md font-semibold">
+          <button className="w-full bg-primary-700 hover:bg-primary-800 text-white py-2 rounded-md font-semibold">
             Course Buy Now
           </button>
 
           {/* Info */}
-          <div className="mt-6 space-y-3 text-sm text-gray-700">
+          <div className="mt-6 space-y-3 text-sm text-gray-700 dark:text-gray-300">
 
             <div className="flex justify-between">
               <span>⏱️ Course Duration</span>
@@ -334,11 +334,11 @@ const CourseDetails = () => {
 
           {/* Includes */}
           <div className="mt-6">
-            <h4 className="font-semibold mb-2 text-sm">
+            <h4 className="font-semibold mb-2 text-sm dark:text-white">
               This Course Includes:
             </h4>
 
-            <ul className="text-sm text-gray-600 space-y-2">
+            <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2">
               {(course.includes || [
                 "Full lifetime access",
                 "Mobile & Computer access",
@@ -353,7 +353,7 @@ const CourseDetails = () => {
 
           {/* Contact */}
           <div className="mt-6 text-center text-sm">
-            <p className="text-gray-500">Need help?</p>
+            <p className="text-gray-500 dark:text-gray-300">Need help?</p>
             <p className="text-red-600 font-semibold">
               📞 {course.contact || "01884445333"}
             </p>

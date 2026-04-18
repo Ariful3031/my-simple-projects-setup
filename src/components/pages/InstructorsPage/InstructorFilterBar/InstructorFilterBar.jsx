@@ -22,7 +22,7 @@ const InstructorFilterBar = ({ searchTerm, setSearchTerm, categoryTerm, setCateg
             <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
                 {/* Search */}
                 <div className="sm:col-span-2 lg:col-span-3">
-                    <label className='text-xl font-bold'>Name & eamil:</label>
+                    <label className='text-xl font-bold dark:text-white'>Name & eamil:</label>
 
 
 
@@ -42,7 +42,7 @@ const InstructorFilterBar = ({ searchTerm, setSearchTerm, categoryTerm, setCateg
 
                 {/* Order By */}
                 <div className="">
-                    <label className='text-xl font-bold'>Subject:</label>
+                    <label className='text-xl font-bold dark:text-white'>Subject:</label>
 
                     <select
                         value={categoryTerm}

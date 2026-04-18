@@ -32,12 +32,12 @@ const CoursesPage = () => {
         <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
           {/* Search */}
           <div className="sm:col-span-2 lg:col-span-3">
-            <label className='text-xl font-bold'>Course Title:</label>
+            <label className='text-xl font-bold dark:text-white'>Course Title:</label>
 
             <div className="relative w-full">
               <input
                 type="text"
-                placeholder="Search by name or email"
+                placeholder="Search by course name"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full mt-1 px-10 py-2 border rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-primary-500 outline-none"
@@ -50,7 +50,7 @@ const CoursesPage = () => {
 
           {/* Order By */}
           <div className="">
-            <label className='text-xl font-bold'>Category:</label>
+            <label className='text-xl font-bold dark:text-white'>Category:</label>
 
             <select
               value={categoryTerm}

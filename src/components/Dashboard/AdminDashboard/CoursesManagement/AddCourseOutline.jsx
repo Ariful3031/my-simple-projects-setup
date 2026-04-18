@@ -162,26 +162,28 @@ export default function AddCourseOutline() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-100 p-6">
-            <div className="bg-white rounded-lg shadow">
+
+        <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-4 md:p-8 transition-colors duration-300">
+            <div className="max-w-6xl mx-auto bg-white dark:bg-gray-800 p-6 md:p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700">
 
                 {/* HEADER */}
-                <div className="p-6 border-b">
-                    <h1 className="text-xl font-bold">
+                <div className="p-6 border-b border-gray-200 dark:border-gray-700">
+                    <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100">
                         Course Outline Manager
                     </h1>
                 </div>
 
                 {/* COURSE SELECT */}
-                <div className="p-6 border-b">
+                <div className="p-6 border-b border-gray-200 dark:border-gray-700">
 
                     <label className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">
                         Select Course <span className="text-red-500">*</span>
                     </label>
+
                     <select
                         value={selectedCourse}
                         onChange={(e) => setSelectedCourse(e.target.value)}
-                        className="w-full p-3 border rounded"
+                        className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200"
                     >
                         <option value="">Select Course</option>
                         {allCoursesData?.map((c) => (
@@ -199,11 +201,11 @@ export default function AddCourseOutline() {
                     </label>
 
                     {outline?.topic?.map((topic, topicIndex) => (
-                        <div key={topicIndex} className="border rounded">
+                        <div key={topicIndex} className="border border-gray-200 dark:border-gray-700 rounded">
 
                             {/* TOPIC HEADER */}
-                            <div className="flex justify-between p-3 bg-gray-100">
-                                <div className="flex gap-2 items-center w-full">
+                            <div className="flex justify-between p-3 bg-gray-100 dark:bg-gray-700">
+                                <div className="flex gap-2 items-center w-full text-gray-800 dark:text-gray-200">
                                     <button onClick={() => toggleTopic(topicIndex)}>
                                         {expandedTopics.has(topicIndex)
                                             ? <ChevronDown size={16} />
@@ -217,7 +219,7 @@ export default function AddCourseOutline() {
                                                 updateTopicTitle(topicIndex, e.target.value)
                                             }
                                             onBlur={() => setEditingTopic(null)}
-                                            className="border px-2 py-1 w-full"
+                                            className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 px-2 py-1 w-full"
                                             autoFocus
                                         />
                                     ) : (
@@ -230,17 +232,14 @@ export default function AddCourseOutline() {
                                     )}
                                 </div>
 
-                                <button onClick={() => deleteTopic(topicIndex)}>
+                                <button onClick={() => deleteTopic(topicIndex)} className="text-red-500">
                                     <Trash2 size={14} />
                                 </button>
                             </div>
 
-
-                            
-
                             {/* SUBTOPICS */}
                             {expandedTopics.has(topicIndex) && (
-                                <div className="p-3 space-y-2">
+                                <div className="p-3 space-y-2 text-gray-800 dark:text-gray-200">
                                     {topic.sub_topics.map((sub, subIndex) => (
                                         <div key={subIndex} className="flex gap-2">
                                             {editingSubtopic?.topicIndex === topicIndex &&
@@ -255,7 +254,7 @@ export default function AddCourseOutline() {
                                                         )
                                                     }
                                                     onBlur={() => setEditingSubtopic(null)}
-                                                    className="border px-2 py-1 w-full"
+                                                    className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 px-2 py-1 w-full"
                                                     autoFocus
                                                 />
                                             ) : (
@@ -276,6 +275,7 @@ export default function AddCourseOutline() {
                                                 onClick={() =>
                                                     deleteSubtopic(topicIndex, subIndex)
                                                 }
+                                                className="text-red-500"
                                             >
                                                 <Trash2 size={12} />
                                             </button>
@@ -284,7 +284,7 @@ export default function AddCourseOutline() {
 
                                     <button
                                         onClick={() => addSubtopic(topicIndex)}
-                                        className="text-sm text-blue-600"
+                                        className="text-sm text-blue-600 dark:text-blue-400"
                                     >
                                         + Add Subtopic
                                     </button>
@@ -293,25 +293,25 @@ export default function AddCourseOutline() {
                         </div>
                     ))}
 
-                    {/* ✅ ADD TOPIC (ONLY IF COURSE SELECTED) */}
+                    {/* ADD TOPIC */}
                     {selectedCourse && (
                         <button
                             onClick={addTopic}
-                            className="bg-green-600 text-white px-3 py-2 rounded"
+                            className="bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded"
                         >
                             + Add Topic
                         </button>
                     )}
                 </div>
 
-                {/* ✅ SAVE BUTTON (SMART) */}
+                {/* SAVE BUTTON */}
                 <div className="p-6">
                     <button
                         onClick={handleSave}
                         disabled={!isChanged || !selectedCourse || isLoading}
                         className={`px-4 py-2 rounded text-white ${!isChanged || !selectedCourse
                             ? "bg-gray-400 cursor-not-allowed"
-                            : "bg-blue-600"
+                            : "bg-blue-600 hover:bg-blue-700"
                             }`}
                     >
                         <Save size={16} className="inline mr-2" />
@@ -320,5 +320,6 @@ export default function AddCourseOutline() {
                 </div>
             </div>
         </div>
+
     );
 }

@@ -91,13 +91,13 @@ const UpdateCategory = () => {
 
 
     return (
-        <div className=" bg-gray-100 dark:bg-gray-900 p-4 md:p-8 text-gray-800 dark:text-white">
-            <div className="bg-white dark:bg-gray-800 p-6 shadow-xl rounded-md">
+        <div className="bg-gray-100 dark:bg-gray-900 p-4 md:p-8 text-gray-800 dark:text-white">
+            <div className="bg-white dark:bg-gray-800 p-6 shadow-xl rounded-md border border-gray-200 dark:border-gray-700">
                 {/* Header */}
 
-                <div className="shadow p-4 rounded-lg mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                <div className="shadow p-4 rounded-lg mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-2 border border-gray-200 dark:border-gray-700">
                     <h2 className="text-xl font-semibold text-primary-500">
-                        Create Category
+                        Update Category
                     </h2>
                     <Link
                         to={"/dashboard/categories-list"}
@@ -107,10 +107,7 @@ const UpdateCategory = () => {
                     </Link>
                 </div>
 
-
-
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-
 
                     {/* image */}
                     <div>
@@ -121,7 +118,7 @@ const UpdateCategory = () => {
                             accept="image/*"
                             {...register("image")}
                             onChange={handleImagePreview}
-                            className="w-full mt-2 p-2 border rounded-lg"
+                            className="w-full mt-2 p-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200"
                         />
 
                         {preview && (
@@ -129,7 +126,7 @@ const UpdateCategory = () => {
                                 <img
                                     src={preview}
                                     alt="preview"
-                                    className="w-40 h-24 object-cover rounded-lg"
+                                    className="w-40 h-24 object-cover rounded-lg border border-gray-200 dark:border-gray-600"
                                 />
 
                                 <button
@@ -138,7 +135,7 @@ const UpdateCategory = () => {
                                         setPreview(null);
                                         setRemoveImage(true);
                                     }}
-                                    className="bg-red-500 text-white px-3 py-1 mt-2 rounded"
+                                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 mt-2 rounded transition"
                                 >
                                     Remove Image
                                 </button>
@@ -146,9 +143,9 @@ const UpdateCategory = () => {
                         )}
                     </div>
 
-
+                    {/* Title */}
                     <div>
-                        <label className="block mb-1 font-medium">
+                        <label className="block mb-1 font-medium dark:text-white">
                             Category Title
                         </label>
 
@@ -156,31 +153,31 @@ const UpdateCategory = () => {
                             {...register("category_title")}
                             type="text"
                             placeholder="PRIMARY"
-                            className="w-full border rounded p-2"
+                            className="w-full border border-gray-300 dark:border-gray-600 rounded p-2 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200"
                         />
                     </div>
 
+                    {/* Description */}
                     <div>
-                        <label className="block mb-1 font-medium">
+                        <label className="block mb-1 font-medium dark:text-white">
                             Category Description
                         </label>
 
                         <textarea
                             {...register("category_description")}
                             placeholder="Category Description"
-                            className="w-full border rounded p-2"
+                            className="w-full border border-gray-300 dark:border-gray-600 rounded p-2 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200"
                         />
                     </div>
 
-
+                    {/* Button */}
                     <button
                         type="submit"
-                        className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600"
+                        className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded transition"
                     >
                         {
                             isLoading ? "Category Updating... " : "Update Category "
                         }
-
                     </button>
 
                 </form>

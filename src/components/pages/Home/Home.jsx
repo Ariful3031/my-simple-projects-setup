@@ -18,14 +18,14 @@ const Home = () => {
             <Banner></Banner>
             <CommunitySection></CommunitySection>
             <TopCourses></TopCourses>
-            <AllCourses></AllCourses>
+            {/* <AllCourses></AllCourses> */}
             <Instructors></Instructors>
             <TrendingCategories></TrendingCategories>
             {/* <LatestFeature></LatestFeature> */}
             <FeedBacks></FeedBacks>
-            <Podcasts></Podcasts>
-            <Blog></Blog>
-            <PlacedAt></PlacedAt>
+            {/* <Podcasts></Podcasts> */}
+            {/* <Blog></Blog> */}
+            {/* <PlacedAt></PlacedAt> */}
             <FAQSection></FAQSection>
 
             {/* <h1 className='bg-primary-50'>Hello i am Ariful islam</h1>

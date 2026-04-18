@@ -16,7 +16,7 @@ const StatsSection = () => {
                         <div className="text-3xl text-indigo-500 mb-3 flex justify-center">
                             {item.icon}
                         </div>
-                        <h4 className="text-2xl font-bold">{item.number}</h4>
+                        <h4 className="text-2xl font-bold dark:text-white">{item.number}</h4>
                         <p className="text-gray-600 dark:text-gray-400">{item.label}</p>
                     </div>
                 ))}
