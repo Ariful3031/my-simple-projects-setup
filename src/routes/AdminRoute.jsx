@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import useCurrentRole from '../components/hooks/useCurrentRole'
+import useCurrentRole from '../Components/hooks/useCurrentRole'
 import { AuthContext } from '../context/AuthContext/AuthContext';
 import Loading from '../components/pages/Loading/Loading';
 import { toast } from 'react-toastify';

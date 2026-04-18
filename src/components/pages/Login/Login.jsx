@@ -35,10 +35,69 @@ const Login = () => {
 
     }
 
+    // demo student 
+    const handleDemoStudentLogin = () => {
+        const demoEmail = import.meta.env.VITE_DEMO_STUDENT
+        const demoPassword = import.meta.env.VITE_DEMO_PASSWORD
+
+        signInUser(demoEmail, demoPassword)
+            .then(result => {
+                // console.log(result.user)
+                toast.success("login success")
+                navigate(`${location.state ? location.state : "/"}`)
+
+            })
+            .catch(error => {
+
+                toast.error(error.message || "Something went wrong!");
+
+            })
+    }
+
+    // Demo teacher 
+
+    const handleDemoTeacherLogin = () => {
+        const demoEmail = import.meta.env.VITE_DEMO_TEACHER
+        const demoPassword = import.meta.env.VITE_DEMO_PASSWORD
+
+        signInUser(demoEmail, demoPassword)
+            .then(result => {
+                // console.log(result.user)
+                toast.success("login success")
+                navigate(`${location.state ? location.state : "/"}`)
+
+            })
+            .catch(error => {
+
+                toast.error(error.message || "Something went wrong!");
+
+            })
+    }
+
+    // demo admin 
+    const handleDemoAdminLogin = () => {
+        const demoEmail = import.meta.env.VITE_DEMO_ADMIN
+        const demoPassword = import.meta.env.VITE_DEMO_PASSWORD
+
+        signInUser(demoEmail, demoPassword)
+            .then(result => {
+                // console.log(result.user)
+                toast.success("login success")
+                navigate(`${location.state ? location.state : "/"}`)
+
+            })
+            .catch(error => {
+
+                toast.error(error.message || "Something went wrong!");
+
+            })
+    }
+
+
 
 
     return (
-        <div className='bg-[#FFF0E1] w-full mx-auto h-screen my-auto flex justify-center items-center'>
+        <div className='md:py-5 w-full mx-auto  my-auto flex justify-center items-center'>
             <div className="card bg-gradient w-full mx-auto  max-w-md shrink-0 shadow-2xl">
                 <h1 className='text-2xl text-[#15803D] dark:text-white font-semibold text-center mt-5'>Login Now</h1>
                 <div className="card-body">
@@ -85,6 +144,31 @@ const Login = () => {
 
                     {/* Google */}
                     <GoogleLogin></GoogleLogin>
+
+                    {/* demo Studentt button */}
+                    <button
+                        type="button"
+                        onClick={handleDemoStudentLogin}
+                        className="btn w-full bg-[#23BE0A] hover:bg-[#1FA501] rounded-lg text-white font-semibold mt-2"
+                    >
+                        Login as Demo Student
+                    </button>
+                    {/* demo teacher button */}
+                    <button
+                        type="button"
+                        onClick={handleDemoTeacherLogin}
+                        className="btn w-full bg-[#23BE0A] hover:bg-[#1FA501] rounded-lg text-white font-semibold mt-2"
+                    >
+                        Login as Demo Teacher
+                    </button>
+                    {/* demo Admin button */}
+                    <button
+                        type="button"
+                        onClick={handleDemoAdminLogin}
+                        className="btn w-full bg-[#23BE0A] hover:bg-[#1FA501] rounded-lg text-white font-semibold mt-2"
+                    >
+                        Login as Demo Admin
+                    </button>
 
                     <p className='mt-2'> Dont’t Have An Account ? please <Link className='cursor-pointer hover:underline text-red-500' to='/register'>Register</Link> </p>
                 </div>

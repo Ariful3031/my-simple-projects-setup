@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged,
 import { AuthContext } from "../AuthContext/AuthContext";
 import { useEffect, useState } from "react";
 import auth from "../../firebase/firebase.config";
+import { toast } from "react-toastify";
 // import { toast } from "react-toastify";
 // import { useRegisterUserMutation } from "../../redux/api/authApi";
 // import { useLocation, useNavigate } from "react-router";

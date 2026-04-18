@@ -6,6 +6,7 @@ import { button } from 'framer-motion/client';
 import useCurrentUser from '../../hooks/useCurrentUser';
 import useCurrentRole from '../../hooks/useCurrentRole';
 import useDatabaseCurrentUser from '../../hooks/useDatabaseCurrentUser';
+import { toast } from 'react-toastify';
 
 
 function Navbar() {
@@ -50,7 +51,18 @@ function Navbar() {
     }, [isDarkMode]);
 
     const currentDatabaseUser = useDatabaseCurrentUser();
-   
+
+    const handleLogout = async () => {
+        try {
+            await logOutUser();
+            toast.success("Logged out successfully");
+            navigate("/login");
+            setOpenImageModal(false)
+        } catch (err) {
+            toast.error("Logout failed");
+        }
+    };
+
 
     return (
         <>
@@ -146,7 +158,8 @@ function Navbar() {
 
                                     <button onClick={handleDashboard}>Dashboadrd</button>
                                     <br />
-                                    <button onClick={() => logOutUser()}>Logout</button>
+                                    {/* <button onClick={() => logOutUser()}>Logout</button> */}
+                                    <button onClick={handleLogout}>Logout</button>
 
                                 </div>
                             )
