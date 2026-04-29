@@ -1,4 +1,4 @@
-# Brainloom nline learning platform
+# Brainloom online learning platform
 
 Brainloom nline learning platform is a responsive web app built with React, Express, MongoDB, and Tailwind CSS, allowing users to browse, filter, and manage property listings securely with login/register functionality. It features category-based search, detailed property information, profile management, and is deployed on Vercel for a seamless experience.
 
