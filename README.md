@@ -4,10 +4,12 @@ Brainloom nline learning platform is a responsive web app built with React, Expr
 
 ## Features
 
-- **User Authentication**: Secure user authentication system with login/register functionality.
-- **Properties Listings**: Browse through a wide range of flat listings with detailed information about location, price, and amenities.
-- **Search and Filter**: Easily search for properties based on Title, Category more.
-- **Profile Management**: Manage your profile information and preferences to find the best match.
+- **🔐 Authentication System**: Secure login & registration using Firebase and JWT
+- **📚 Course Management**: Users can browse, view details, and enroll in courses
+- **🔍 Search & Filter**: Easily find courses by category, title, and other criteria
+- **👤 User Profile**: Manage user profile and enrolled courses
+- **⚡ Responsive UI**: Optimized for mobile, tablet, and desktop devices
+- **🚀 Fast Deployment**: Hosted on Vercel for high performance
 
 
 ## Technologies Used
