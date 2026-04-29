@@ -40,7 +40,7 @@ npm run dev
 
 ## Live URLs
 
-#### Live Project URL: https://brainloom-online-learning-platform.vercel.app/g
+#### Live Project URL: https://brainloom-online-learning-platform.vercel.app/
 #### Client Side Github Link : https://github.com/Ariful3031/my-simple-projects-setup
 #### Server Side Github Link :  https://github.com/Ariful3031/Simple-react-project-setup-server
 ## Project Dependencies
